@@ -55,7 +55,7 @@ $('#searchResults').on('click', '.open-heart', function() {
   // ajax call to create new podcast in User document
   $.ajax({
     method: 'POST',
-    url: 'https://localhost:4000/api/v1/podcasts',
+    url: 'http://localhost:4000/api/v1/podcasts',
     data: {
       name: $(this).data('name'),
       artist: $(this).data('artist'),
