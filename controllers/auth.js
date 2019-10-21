@@ -91,21 +91,6 @@ const createSession = (req, res) => {
 };
 
 
-// SECTION POST Verify Auth
-const verifyAuth = (req, res) => {
-    if (!req.session.currentUser) {
-        return res.status(401).json({
-            status: 401,
-            error: [{ message: 'Unauthorized. Please log in and try again.' }]
-        });
-    };
-
-    res.status(200).json({
-        status: 200,
-        user: req.session.currentUser
-    });
-};
-
 // SECTION DELETE Logout
 const deleteSession = (req, res) => {
     req.session.destroy(err => {

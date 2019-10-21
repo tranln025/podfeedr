@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const DB_URI = 'mongodb://localhost:27017/podcast-app';
+const DB_URL = 'mongodb://localhost:27017/podcast-app';
 
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,
