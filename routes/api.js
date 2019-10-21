@@ -7,7 +7,7 @@ const ctlr = require('../controllers');
 // --------------------------------------------- AUTH --------------------------------------------- //
 
 router.post('/signup', ctlr.auth.createUser);
-router.post('/login', ctlr.auth.createSession);
+router.post('/signin', ctlr.auth.createSession);
 router.delete('/logout', ctlr.auth.deleteSession);
 router.get('/verify', ctlr.auth.verifyAuth);
 

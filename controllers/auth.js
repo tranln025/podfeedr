@@ -118,7 +118,7 @@ const verifyAuth = (req, res) => {
       status: 200,
       user: req.session.currentUser,
     });
-  }
+}
 
 // SECTION GET Show Feed
 const showFeed = (req, res) => {

@@ -5,22 +5,22 @@ const ctlr = require('./../controllers');
 // ---------------------------------------------------- AUTH
 
 // GET Home
-router.get('/', (req, res) => {
+router.get('/signup', (req, res) => {
     res.sendFile('views/auth/signup.html', {
         root: `${__dirname}/../`
     });
 });
 
-router.get('/search', (req, res) => {
-    res.sendFile('views/search.html', {
+// GET Sign In
+router.get('/signin', (req, res) => {
+    res.sendFile('views/auth/signin.html', {
         root: `${__dirname}/../`
     });
 });
 
-
-// GET Login
-router.get('/login', (req, res) => {
-    res.sendFile('views/auth/signin.html', {
+// GET Search
+router.get('/search', (req, res) => {
+    res.sendFile('views/search.html', {
         root: `${__dirname}/../`
     });
 });
