@@ -1,6 +1,21 @@
 const bcrypt = require('bcryptjs');
 const db = require('./../models');
 
+// SECTION GET All Users
+const viewAllUsers = (req, res) => {
+    db.User.find({}, (err, allUsers) => {
+        if (err) {
+            return console.log(err)
+        };
+        res.json({
+            status: 200,
+            count: allUsers.length,
+            data: allUsers,
+            requestedAt: new Date().toLocaleString()
+        })
+    })
+}
+
 // SECTION POST Create User
 const createUser = (req, res) => {
     // console.log('create user route');
@@ -30,15 +45,17 @@ const createUser = (req, res) => {
                 });
 
                 const newUser = {
-                    name: req.body.name,
+                    username: req.body.username,
                     email: req.body.email,
                     password: hash
                 };
+                console.log(newUser);
 
                 db.User.create(newUser, (err, createdUser) => {
                     if (err) return res.status(500).json({ 
                         status: 500,
                         error: [{ message: 'Something went wrong with creating the user. Please try again.' }],
+                        errorMessage: err
                     });
 
                     res.status(201).json({
@@ -105,41 +122,10 @@ const deleteSession = (req, res) => {
     });
 };
 
-// SECTION POST Verify Auth
-const verifyAuth = (req, res) => {
-    if (!req.session.currentUser) {
-      return res.status(401).json({
-        status: 401,
-        error: [{ message: 'Unauthorized. Please log in and try again' }],
-      });
-    }
-  
-    res.status(200).json({
-      status: 200,
-      user: req.session.currentUser,
-    });
-}
-
-// SECTION GET Show Feed
-const showFeed = (req, res) => {
-    db.User.findById(req.params.userId, (err, foundFeed) => {
-      if (err) return res.status(500).json({
-        status: 500,
-        error: [{ message: 'Something went wrong. Please try again' }],
-      });
-  
-      res.status(200).json({
-        status: 200,
-        data: foundFeed,
-      });
-    });
-  };
-
 
 module.exports = {
+    viewAllUsers,
     createUser,
     createSession,
     deleteSession,
-    verifyAuth,
-    showFeed,
 };

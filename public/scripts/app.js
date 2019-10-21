@@ -44,7 +44,7 @@ form && form.addEventListener('submit', (event) => {
     });
     
 
-    // SECTION Handle Signup Form
+    // SECTION If Signup Form is Valid, Store Data
     if (form.id === 'signup' && formIsValid) {
         console.log('Submitting new user --> ', userData);
         fetch('/api/v1/signup', {
@@ -62,7 +62,7 @@ form && form.addEventListener('submit', (event) => {
         .catch(err => console.log(err));
     };
 
-    // SECTION Handle Sign In
+    // SECTION If Sign-in Form is Valid, Store Data
     if (form.id === 'signin' && formIsValid) {
         console.log('Submitting user signin --> ', userData);
         fetch('/api/v1/signin', {

@@ -9,9 +9,9 @@ const db = require('../models');
 // --------------------------------------------- AUTH --------------------------------------------- //
 
 router.post('/signup', ctlr.auth.createUser);
+router.get('/signup', ctlr.auth.viewAllUsers)
 router.post('/signin', ctlr.auth.createSession);
 router.delete('/logout', ctlr.auth.deleteSession);
-router.get('/verify', ctlr.auth.verifyAuth);
 
 // ------------------------------------------- VIEW THE API ------------------------------------------- //
 
