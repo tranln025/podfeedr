@@ -25,12 +25,37 @@ router.get('/podcasts', (req, res) => {
 router.post('/podcasts', (req, res) => {
   db.Podcast.create(req.body, (err, newPodcast) => {
     if (err) return console.log(err)
+
     res.json({
       status: 201,
       data: newPodcast,
     });
   });
 });
+
+// routes for testing
+router.get('/podcasts/:name', (req, res) => {
+  let name = req.params.name;
+  db.Podcast.find({ name: {$regex: `${name}`, $options: 'i'} }, (err, foundPodcast) => {
+    if (err) return console.log(err);
+    res.json({
+      status: 200,
+      data: foundPodcast,
+    });
+  });
+});
+
+router.delete('/podcasts/:id', (req, res) => {
+  db.Podcast.findByIdAndDelete(req.params.id, (err, foundPodcast) => {
+    if (err) return console.log(err);
+    res.json({
+      status: 200,
+      data: foundPodcast,
+    });
+  })
+});
+
+
 // ------------------------------------------- FEED ------------------------------------------- //
 
 // router.get('/feed/:userId', ctlr.auth.showFeed);

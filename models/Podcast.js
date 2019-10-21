@@ -5,6 +5,7 @@ const podcastSchema = new Schema({
   name: {
     type: String,
     default: 'No name found',
+    unique: true,
   },
   artist: {
     type: String,
