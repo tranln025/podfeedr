@@ -3,15 +3,23 @@ body {
 }
 
 .search-result {
-  display: flex;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
 }
 
 .result-img {
-  width: 60px;
+  width: 100%;
 }
 
 .podcast-name {
   display: inline;
+}
+
+.col-sm-6 {
+  max-width: 300px;
+}
+
+.heart {
+  font-size: 20px;
 }
