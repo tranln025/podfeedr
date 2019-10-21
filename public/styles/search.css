@@ -1,0 +1,17 @@
+body {
+  background: lavender;
+}
+
+.search-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-img {
+  width: 60px;
+}
+
+.podcast-name {
+  display: inline;
+}
