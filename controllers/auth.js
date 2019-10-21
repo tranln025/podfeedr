@@ -5,7 +5,7 @@ const db = require('./../models');
 const createUser = (req, res) => {
     // console.log('create user route');
     db.User.findOne({ email: req.body.email }, (err, foundUser) => {
-        if (err) return res.status(500).json({ // overwrite default status 200 by using "status"
+        if (err) return res.status(500).json({ 
             status: 500,
             error: [{ message: 'Something went wrong. Please try again.' }],
         });
@@ -15,7 +15,7 @@ const createUser = (req, res) => {
             error: [{ message: 'Invalid request. Please try again.' }],
         });
 
-        // New salt. Takes in number of salt rounds. The higher the number, the more complex but also the longer it takes to generate salt. Convention is 10
+        // New salt
         bcrypt.genSalt(10, (err, salt) => {
             if (err) return res.status(500).json({ 
                 status: 500,
@@ -41,7 +41,7 @@ const createUser = (req, res) => {
                         error: [{ message: 'Something went wrong with creating the user. Please try again.' }],
                     });
 
-                    res.status(201).json({ // only return a success status, don't return user data because hackers may try to incercept it
+                    res.status(201).json({
                         status: 201,
                     });
                 });
@@ -110,7 +110,7 @@ const verifyAuth = (req, res) => {
     if (!req.session.currentUser) {
       return res.status(401).json({
         status: 401,
-        error: [{ message: 'Unauthorized. Pleas login and try again' }],
+        error: [{ message: 'Unauthorized. Please log in and try again' }],
       });
     }
   

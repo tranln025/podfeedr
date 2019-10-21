@@ -11,9 +11,9 @@ router.post('/login', ctlr.auth.createSession);
 router.delete('/logout', ctlr.auth.deleteSession);
 router.get('/verify', ctlr.auth.verifyAuth);
 
-// ------------------------------------------- PROFILE ------------------------------------------- //
+// ------------------------------------------- FEED ------------------------------------------- //
 
-// router.get('/profiles/:userId', ctlr.auth.showProfile);
+// router.get('/feed/:userId', ctlr.auth.showFeed);
 
 
 module.exports = router;
