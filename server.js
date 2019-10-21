@@ -20,6 +20,7 @@ app.use(express.static(__dirname + '/public'));
 
 // HTML Routes
 app.use('/', routes.views);
+app.use('/search', routes.search);
 
 // API Routes
 app.use('/api/v1', routes.api);
