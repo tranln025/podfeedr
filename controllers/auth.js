@@ -51,7 +51,7 @@ const createUser = (req, res) => {
 };
 
 
-// SECTION Create Session
+// SECTION POST Login
 const createSession = (req, res) => {
     console.log('Request session object --> ', req.session)
     db.User.findOne({ email: req.body.email }, (err, foundUser) => {
@@ -106,30 +106,7 @@ const verifyAuth = (req, res) => {
     });
 };
 
-// SECTION GET Show Feed
-const showFeed = (req, res) => {
-    if (!req.session.currentUser) {
-        // return res.status(401).json({
-        //     status: 401,
-        //     error: [{ message: 'Unauthorized. Please log in and try again.' }]
-        // });
-        res.redirect('/login')
-    };
-
-    db.User.findById(req.params.userId, (err, foundFeed) => {
-        if (err) return res.status(500).json({ 
-            status: 500,
-            error: [{ message: 'Something went wrong with creating the user. Please try again.' }],
-        });
-
-        res.status(200).json({
-            status: 200,
-            data: foundFeed,
-        });
-    });
-};
-
-// DELETE Logout
+// SECTION DELETE Logout
 const deleteSession = (req, res) => {
     req.session.destroy(err => {
         if (err) return res.status(500).json({
@@ -142,6 +119,36 @@ const deleteSession = (req, res) => {
         });
     });
 };
+
+// SECTION POST Verify Auth
+const verifyAuth = (req, res) => {
+    if (!req.session.currentUser) {
+      return res.status(401).json({
+        status: 401,
+        error: [{ message: 'Unauthorized. Pleas login and try again' }],
+      });
+    }
+  
+    res.status(200).json({
+      status: 200,
+      user: req.session.currentUser,
+    });
+  }
+
+// SECTION GET Show Feed
+const showFeed = (req, res) => {
+    db.User.findById(req.params.userId, (err, foundFeed) => {
+      if (err) return res.status(500).json({
+        status: 500,
+        error: [{ message: 'Something went wrong. Please try again' }],
+      });
+  
+      res.status(200).json({
+        status: 200,
+        data: foundFeed,
+      });
+    });
+  };
 
 
 module.exports = {
