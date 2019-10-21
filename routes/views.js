@@ -11,6 +11,12 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/search', (req, res) => {
+    res.sendFile('views/search.html', {
+        root: `${__dirname}/../`
+    });
+});
+
 
 // GET Login
 router.get('/login', (req, res) => {
@@ -27,7 +33,7 @@ router.get('/feed/:userId', (req, res) => {
     if (!req.session.currentUser) {
       return res.redirect('/login');
     };
-  
+
     res.sendFile('views/feed/show.html', {
       root: `${__dirname}/../`
     });
