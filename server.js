@@ -16,11 +16,16 @@ app.use(bodyParser.json());
 // Serve Public Directory
 app.use(express.static(__dirname + '/public'));
 
+app.use(session({
+  secret: 'Sssshhhhhh, this is a secret....',
+  resave: false, // save session on every request
+  saveUninitialized: false, // Only save session if session exists on req object.
+}));
+
 // ------------------------------------------------- ENDPOINTS ------------------------------------------------- //
 
 // HTML Routes
 app.use('/', routes.views);
-app.use('/search', routes.search);
 
 // API Routes
 app.use('/api/v1', routes.api);

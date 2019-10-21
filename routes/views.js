@@ -6,7 +6,7 @@ const ctlr = require('./../controllers');
 
 // GET Home
 router.get('/', (req, res) => {
-    res.sendFile('views/index.html', {
+    res.sendFile('views/auth/signup.html', {
         root: `${__dirname}/../`
     });
 });
@@ -20,7 +20,7 @@ router.get('/search', (req, res) => {
 
 // GET Login
 router.get('/login', (req, res) => {
-    res.sendFile('views/auth/login.html', {
+    res.sendFile('views/auth/signin.html', {
         root: `${__dirname}/../`
     });
 });
