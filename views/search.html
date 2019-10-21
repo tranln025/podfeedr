@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="styles/search.css">
   <script src="https://kit.fontawesome.com/8f0079a728.js" crossorigin="anonymous" defer></script>
   <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous" defer></script>
-  <script src="app.js" defer></script>
+  <script src="/scripts/search.js" defer></script>
   <title>Podcast App</title>
 </head>
 <body>
@@ -22,7 +22,14 @@
       <input id="search-bar" placeholder="example: judge john hodgman" />
       <button type="submit" id="submit-btn">Search</button>
     </form>
-    <div id="searchResults"></div>
+    <div class="album py-5">
+      <div id="searchResults">
+        <div class="container">
+          <div class="row">
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </html>
