@@ -13,6 +13,7 @@ router.post('/login', ctlr.auth.createSession);
 router.delete('/logout', ctlr.auth.deleteSession);
 router.get('/verify', ctlr.auth.verifyAuth);
 
+<<<<<<< HEAD
 // ------------------------------------------- VIEW THE API ------------------------------------------- //
 
 router.get('/podcasts', (req, res) => {
@@ -31,6 +32,11 @@ router.post('/podcasts', (req, res) => {
     });
   });
 });
+=======
+// ------------------------------------------- FEED ------------------------------------------- //
+
+// router.get('/feed/:userId', ctlr.auth.showFeed);
+>>>>>>> submaster
 
 
 module.exports = router;
