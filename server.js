@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -13,7 +12,6 @@ const routes = require('./routes');
 // BodyParser Middleware
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(cors());
 
 // Serve Public Directory
 app.use(express.static(__dirname + '/public'));
