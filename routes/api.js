@@ -13,7 +13,7 @@ router.get('/verify', ctlr.auth.verifyAuth);
 
 // ------------------------------------------- PROFILE ------------------------------------------- //
 
-router.get('/profiles/:userId', ctlr.auth.showProfile);
+// router.get('/profiles/:userId', ctlr.auth.showProfile);
 
 
 module.exports = router;
