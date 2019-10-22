@@ -2,7 +2,7 @@ console.log('search js connected');
 
 // user submits a search query
 const onSuccess = (res) => {
-  const $searchResults = $('#searchResults');
+  const $searchResults = $('#results');
   $searchResults.empty();
   res.results.forEach((result) => {
   const temp = `<div class="col-sm-6">
@@ -34,18 +34,19 @@ $('form').on('submit', (e) => {
   e.preventDefault();
   let term = $('#search-bar').val();
   term = term.replace(' ', '+');
-  $.ajax({
-    method: 'GET',
-    url: `https://itunes.apple.com/search?term=${term}&media=podcast&limit=10`,
-    dataType: 'json',
-    success: onSuccess,
-    error: (err) => {
-      console.log({err});
-    }
-  })
+  // $.ajax({
+  //   method: 'GET',
+  //   url: `https://itunes.apple.com/search?term=${term}&media=podcast&limit=10`,
+  //   dataType: 'json',
+  //   success: onSuccess,
+  //   error: (err) => {
+  //     console.log({err});
+  //   }
+  // })
+  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=10&callback=onSuccess`);
 });
 
-$('#searchResults').on('click', '.open-heart', function() {
+$('#results').on('click', '.open-heart', function() {
   $(this).removeClass('open-heart');
   $(this).addClass('closed-heart');
 
@@ -71,7 +72,7 @@ $('#searchResults').on('click', '.open-heart', function() {
   });
 });
 
-$('#searchResults').on('click', '.closed-heart', function() {
+$('#results').on('click', '.closed-heart', function() {
   $(this).removeClass('closed-heart');
   $(this).addClass('open-heart');
 
