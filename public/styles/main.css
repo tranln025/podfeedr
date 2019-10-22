@@ -15,3 +15,32 @@ form {
     font-size: 14px;
     color: #721c24;
 }
+
+#results {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .result-img {
+    width: 100%;
+    max-height: 293px;
+  }
+
+  .col-sm-6 {
+    max-width: 325px;
+  }
+
+  .heart {
+    font-size: 20px;
+    color: #ff0000;
+  }
+
+  .form-inline {
+    flex-wrap: nowrap;
+  }
+
+  .container {
+    max-width: 540px;
+  }
