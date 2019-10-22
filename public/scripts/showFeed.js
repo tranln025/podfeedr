@@ -34,7 +34,7 @@ const displayFeed = (res) => {
 $('document').ready(
   $.ajax({
     method: 'GET',
-    url: 'http://localhost:4000/api/v1/podcasts',
+    url: `http://localhost:4000/api/v1/podcasts/${userId}`,
     success: displayFeed,
   })
 );

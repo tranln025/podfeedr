@@ -64,7 +64,7 @@ form && form.addEventListener('submit', (event) => {
             .then(dataStream => dataStream.json())
             .then(res => {
                 console.log(res);
-                if (res.status === 201) return window.location = '/feed';
+                if (res.status === 201) return window.location = '/signin';
             })
             .catch(err => console.log(err));
         };
@@ -91,7 +91,10 @@ form && form.addEventListener('submit', (event) => {
                     </div>
                 `)
             }
-            if (res.status === 201) return window.location = `/feed/${res.data.id}`;
+            if (res.status === 201) {
+                window.sessionStorage.setItem(`userId`, `${res.data.id}`);
+                return window.location = `/feed/${res.data.id}`
+            };
         })
         .catch(err => console.log(err));
     };
