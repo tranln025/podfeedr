@@ -14,12 +14,9 @@
     <script defer src="/scripts/app.js"></script>
     <title>Podfeed</title>
 </head>
-<body>
-    <!-- <nav>
-        <img id="logo" src="#" alt="">
-        <a href="/signin"><button class="signin">Sign In</button></a>
-    </nav> -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+<body class="signup-body">
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4 fixed-top">
         <a class="navbar-brand" href="/">Podfeed</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,8 +32,14 @@
             <a href="/signin"><button class="btn btn-outline-info my-2 my-sm-0 ml-auto signin">Sign In</button></a>
         </div>
     </nav>
-    <main>
-        <section class="container" id="form-container">
+
+    <main class="row">
+        <section class="col-lg hook">
+            <h1 class="title-text">Podfeedr.</h1>
+            <h3>The ultimate source for your favorite podcasts.</h3>
+        </section>
+
+        <section class="col-lg container" id="form-container">
             <div class="jumbotron">
                 <h1>Sign Up</h1>
                 <form id="signup">
