@@ -12,7 +12,7 @@ router.post('/signup', ctlr.auth.createUser);
 router.get('/signup', ctlr.auth.viewAllUsers)
 router.delete('/signup', ctlr.auth.deleteAllUsers)
 router.post('/signin', ctlr.auth.createSession);
-router.delete('/logout', ctlr.auth.deleteSession);
+router.delete('/signout', ctlr.auth.deleteSession);
 
 // ------------------------------------------- VIEW THE API ------------------------------------------- //
 

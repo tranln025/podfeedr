@@ -4,7 +4,7 @@ const ctlr = require('./../controllers');
 
 // ---------------------------------------------------- AUTH
 
-// GET Home
+// GET Landing Page/Signup
 router.get('/signup', (req, res) => {
     res.sendFile('views/auth/signup.html', {
         root: `${__dirname}/../`
