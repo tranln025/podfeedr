@@ -34,15 +34,16 @@ $('form').on('submit', (e) => {
   e.preventDefault();
   let term = $('#search-bar').val();
   term = term.replace(' ', '+');
-  $.ajax({
-    method: 'GET',
-    url: `https://itunes.apple.com/search?term=${term}&media=podcast&limit=10`,
-    dataType: 'json',
-    success: onSuccess,
-    error: (err) => {
-      console.log({err});
-    }
-  })
+  // $.ajax({
+  //   method: 'GET',
+  //   url: `https://itunes.apple.com/search?term=${term}&media=podcast&limit=10`,
+  //   dataType: 'json',
+  //   success: onSuccess,
+  //   error: (err) => {
+  //     console.log({err});
+  //   }
+  // })
+  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=10&callback=onSuccess`);
 });
 
 $('#searchResults').on('click', '.open-heart', function() {
