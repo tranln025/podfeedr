@@ -1,5 +1,7 @@
 console.log('search js connected');
 
+$(`#username-nav-link`).text(`${window.sessionStorage.username}`);
+
 // user submits a search query
 const onSuccess = (res) => {
   const $searchResults = $('#results');
