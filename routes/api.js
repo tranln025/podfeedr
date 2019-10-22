@@ -35,16 +35,16 @@ router.get('/podcasts', (req, res) => {
 // });
 
 // routes for testing
-router.get('/podcasts/:name', (req, res) => {
-  let name = req.params.name;
-  db.Podcast.find({ name: {$regex: `${name}`, $options: 'i'} }, (err, foundPodcast) => {
-    if (err) return console.log(err);
-    res.json({
-      status: 200,
-      data: foundPodcast,
-    });
-  });
-});
+// router.get('/podcasts/:name', (req, res) => {
+//   let name = req.params.name;
+//   db.Podcast.find({ name: {$regex: `${name}`, $options: 'i'} }, (err, foundPodcast) => {
+//     if (err) return console.log(err);
+//     res.json({
+//       status: 200,
+//       data: foundPodcast,
+//     });
+//   });
+// });
 
 router.post('/podcasts/:id', (req, res) => {
     db.Podcast.create(req.body, (err, newPodcast) => {
@@ -61,7 +61,6 @@ router.post('/podcasts/:id', (req, res) => {
             foundUser.podcasts.push(newPodcast); 
             foundUser.save((err, updatedUser) => {
                 if (err) return console.log(err);
-                console.log(updatedUser);
             })
             
             // res.json({
@@ -75,7 +74,8 @@ router.post('/podcasts/:id', (req, res) => {
 
 router.get('/podcasts/:id', (req, res) => {
     let id = req.params.id;
-    db.User.findById(id).populate('podcasts')
+    db.User.findById(id)
+    .populate('podcasts')
     .exec((err, foundUser) => {
         if (err) return console.log(err);
         res.json({
@@ -84,7 +84,7 @@ router.get('/podcasts/:id', (req, res) => {
         });
       })
   });
-  
+
 
 router.delete('/podcasts/:id', (req, res) => {
   db.Podcast.findByIdAndDelete(req.params.id, (err, foundPodcast) => {
