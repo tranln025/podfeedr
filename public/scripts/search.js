@@ -56,7 +56,7 @@ $('#results').on('click', '.open-heart', function() {
   // ajax call to create new podcast in User document
   $.ajax({
     method: 'POST',
-    url: 'http://localhost:4000/api/v1/podcasts',
+    url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
     data: {
       name: $(this).data('name'),
       artist: $(this).data('artist'),
@@ -64,6 +64,7 @@ $('#results').on('click', '.open-heart', function() {
       imageSource: $(this).data('image-source'),
     },
     success: (req)=>{
+      console.log(`window stored Id: ${window.sessionStorage.userId}`)
       console.log('success');
     },
     error: (err) => {
