@@ -41,6 +41,19 @@ form {
     flex-wrap: nowrap;
   }
 
-  .container {
+  #form-container {
+    margin-top: 60px;
     max-width: 540px;
+  }
+
+  @media (min-width: 740px) and (max-width: 900px) {
+    #form-container {
+        margin-left: 40%;
+    }
+  }
+
+  @media (min-width: 900px) {
+      #form-container {
+          margin-left: 55%;
+      }
   }
