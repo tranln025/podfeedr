@@ -3,7 +3,6 @@ console.log('showfeed');
 const userId = window.location.pathname.split('/')[2];
 
 const displayFeed = (res) => {
-  console.log(typeof res);
   const podcasts = res;
   const $results = $('#results');
   $results.empty();

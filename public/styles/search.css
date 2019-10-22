@@ -2,22 +2,19 @@ body {
   background: lavender;
 }
 
-.search-result {
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center; */
+#results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .result-img {
   width: 100%;
-}
-
-.podcast-name {
-  display: inline;
+  max-height: 293px;
 }
 
 .col-sm-6 {
-  max-width: 300px;
+  max-width: 325px;
 }
 
 .heart {
