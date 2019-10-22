@@ -6,6 +6,21 @@ form {
     max-width: 600px;
 }
 
+#signin-form, #no-account {
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+#no-account {
+    margin-top: 7px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+#no-account > p {
+    padding-top: 8px;
+}
+
 .input-error {
     background-color: #f8d7da;
     border: 2px solid #721c24;

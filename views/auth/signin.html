@@ -15,26 +15,46 @@
     <title>Podfeed</title>
 </head>
 <body>
-    <nav>
+    <!-- <nav>
         <img id="logo" src="#" alt="">
         <button class="signin">Sign In</button>
+    </nav> -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="/">Podfeed</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto mr-4">
+                <!-- <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span id="username-nav-link">&langle;Username&rangle;</span>
+                    </a>
+                </li> -->
+            </ul>
+            <a href="/signup"><button class="btn btn-outline-info my-2 my-sm-0 ml-auto">Sign Up</button></a>
+        </div>
     </nav>
-
     <main>
-        <h1>Sign In</h1>
-        <form id="signin">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="username" name="username" class="form-control" id="username" placeholder="Enter username">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <button class="signin-btn" type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <div class="jumbotron" id="signin-form">
+            <h1>Sign In</h1>
+            <form id="signin">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="username" name="username" class="form-control" id="username" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <button class="signin-btn btn btn-info" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="jumbotron" id="no-account">
+            <p>Don't have an account? <a href="/signup">Sign up</a></p>
+        </div>
     </main>
-        
+
 
     <!-- Boostrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
