@@ -10,6 +10,7 @@ const db = require('../models');
 
 router.post('/signup', ctlr.auth.createUser);
 router.get('/signup', ctlr.auth.viewAllUsers)
+router.delete('/signup', ctlr.auth.deleteAllUsers)
 router.post('/signin', ctlr.auth.createSession);
 router.delete('/logout', ctlr.auth.deleteSession);
 
