@@ -46,6 +46,19 @@ router.get('/podcasts/:name', (req, res) => {
   });
 });
 
+router.get('/podcasts/:id', (req, res) => {
+    let id = req.params.id;
+    db.User.findById(id).populate('podcasts')
+    .exec((err, foundUser) => {
+        if (err) return console.log(err);
+        res.json({
+          status: 200,
+          data: foundUser.podcasts,
+        });
+      })
+  });
+  
+
 router.delete('/podcasts/:id', (req, res) => {
   db.Podcast.findByIdAndDelete(req.params.id, (err, foundPodcast) => {
     if (err) return console.log(err);
