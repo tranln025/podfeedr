@@ -4,7 +4,7 @@ const ctlr = require('./../controllers');
 
 // ---------------------------------------------------- AUTH
 
-// GET Home
+// GET Landing Page/Signup
 router.get('/signup', (req, res) => {
     res.sendFile('views/auth/signup.html', {
         root: `${__dirname}/../`
@@ -30,9 +30,9 @@ router.get('/search', (req, res) => {
 
 // GET User Feed
 router.get('/feed/:userId', (req, res) => {
-    // if (!req.session.currentUser) {
-    //   return res.redirect('/login');
-    // };
+    if (!req.session.currentUser) {
+      return res.redirect('/signin');
+    };
 
     res.sendFile('views/feed/show.html', {
       root: `${__dirname}/../`

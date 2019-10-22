@@ -39,3 +39,20 @@ $('document').ready(
   })
 );
 
+// Sign Out
+$(`.signout`).on('click', (event) => {
+    event.preventDefault();
+    fetch('/api/v1/signout', {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    .then(dataStream => dataStream.json())
+    .then(res => {
+        if (res.status === 200) {
+        window.location = '/signup';
+        }
+    });
+});

@@ -47,7 +47,8 @@ const createUser = (req, res) => {
                 const newUser = {
                     username: req.body.username,
                     email: req.body.email,
-                    password: hash
+                    password: hash,
+                    podcasts: []
                 };
                 console.log(newUser);
 
@@ -67,11 +68,25 @@ const createUser = (req, res) => {
     });
 };
 
+// SECTION DELETE All Users
+const deleteAllUsers = (req, res) => {
+    db.User.deleteMany({}, (err, deletedUsers) => {
+        if (err) return console.log(err);
+
+        res.json({
+            status: 200,
+            count: deletedUsers.length,
+            data: deletedUsers,
+            requestedAt: new Date().toLocaleString()
+        });
+    });
+};
+
 
 // SECTION POST Login
 const createSession = (req, res) => {
     console.log('Request session object --> ', req.session)
-    db.User.findOne({ email: req.body.email }, (err, foundUser) => {
+    db.User.findOne({ username: req.body.username }, (err, foundUser) => {
         if (err) return res.status(500).json({ 
             status: 500,
             error: [{ message: 'Something went wrong with creating the session. Please try again.' }],
@@ -128,4 +143,7 @@ module.exports = {
     createUser,
     createSession,
     deleteSession,
+    deleteAllUsers
 };
+
+// TODO Change error messages to be vague once all troubleshooting is done
