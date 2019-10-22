@@ -13,7 +13,7 @@ const onSuccess = (res) => {
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
             <a href="${result.collectionViewUrl}" target="_blank">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">iTunes</button>
             </a>
           </div>
           <i class="far fa-heart heart open-heart"
