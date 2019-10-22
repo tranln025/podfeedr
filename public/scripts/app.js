@@ -83,7 +83,6 @@ form && form.addEventListener('submit', (event) => {
         })
         .then(dataStream => dataStream.json())
         .then(res => {
-            console.log(res);
             if (res.status === 400) {
                 $(`#password`).after(`
                     <div class="error-msg">
@@ -93,6 +92,8 @@ form && form.addEventListener('submit', (event) => {
             }
             if (res.status === 201) {
                 window.sessionStorage.setItem(`userId`, `${res.data.id}`);
+                console.log(res);
+                window.sessionStorage.setItem(`username`, `${userData.username}`);
                 return window.location = `/feed/${res.data.id}`
             };
         })

@@ -1,5 +1,7 @@
 console.log('showfeed');
 
+$(`#username-nav-link`).text(`${window.sessionStorage.username}`)
+
 const userId = window.location.pathname.split('/')[2];
 
 const displayFeed = (res) => {
