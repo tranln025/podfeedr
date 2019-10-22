@@ -64,6 +64,7 @@ $('#results').on('click', '.open-heart', function() {
       imageSource: $(this).data('image-source'),
     },
     success: (req)=>{
+      console.log($(this).data('name'));
       console.log(`window stored Id: ${window.sessionStorage.userId}`)
       console.log('success');
     },
