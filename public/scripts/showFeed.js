@@ -1,6 +1,7 @@
 console.log('showfeed');
 
-$(`#username-nav-link`).text(`${window.sessionStorage.username}`)
+$(`#username-nav-link`).text(`${window.sessionStorage.username}`);
+$('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 
 const userId = window.location.pathname.split('/')[2];
 
@@ -18,7 +19,7 @@ const displayFeed = (res) => {
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
             <a href="${result.itunesLink}" target="_blank">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">iTunes</button>
             </a>
           </div>
           <i class="fas fa-heart heart closed-heart"
