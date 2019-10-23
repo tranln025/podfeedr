@@ -57,6 +57,10 @@ body main {
 
 /* Search/Feed */
 
+a:hover {
+    text-decoration: none;
+}
+
 #results {
   display: flex;
   flex-direction: row;
