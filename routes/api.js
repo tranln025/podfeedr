@@ -80,20 +80,30 @@ router.get('/podcasts/:id', (req, res) => {
         if (err) return console.log(err);
         res.json({
           status: 200,
+          count: foundUser.podcasts.length,
           data: foundUser.podcasts,
         });
       })
   });
 
 
-router.delete('/podcasts/:id', (req, res) => {
-  db.Podcast.findByIdAndDelete(req.params.id, (err, foundPodcast) => {
-    if (err) return console.log(err);
-    res.json({
-      status: 200,
-      data: foundPodcast,
+router.delete('/podcasts/:userId', (req, res) => {
+  db.User.findById(req.params.userId)
+  .populate('podcasts')
+  .exec((err, foundUser) =>  {
+    if (err) return console.log('error finding user', err);
+
+    // Get index of req.body in foundUser.podcasts array
+    index = foundUser.podcasts.findIndex(x => x.itunesLink == req.body.itunesLink)
+
+    db.Podcast.findByIdAndDelete(foundUser.podcasts[index]._id, (error, deletedPodcast) => {
+      if (error) console.log(error);
+      res.json({
+        status: 200,
+        data: deletedPodcast,
+      });
     });
-  })
+  });
 });
 
 
