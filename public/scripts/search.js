@@ -1,7 +1,6 @@
 console.log('search js connected');
 
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
-
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 
 let loved;
@@ -19,10 +18,12 @@ $.ajax({
 const onSuccess = (res) => {
   const lovedNames = loved.map(x => x.name);
   let heartCount = 0;
+  let heartClasses = '';
   const $searchResults = $('#results');
   $searchResults.empty();
   res.results.forEach((result) => {
-    let heartClasses = 'far fa-heart heart open-heart';
+    heartCount = 0;
+    heartClasses = 'far fa-heart heart open-heart'
     if (lovedNames.includes(result.collectionName)) {
       heartCount = loved.find(x => x.name === result.collectionName).heartCount;
       heartClasses = 'fas fa-heart heart closed-heart';
@@ -113,5 +114,23 @@ $('#results').on('click', '.closed-heart', function() {
     error: (err) => {
       console.log(err);
     }
+  })
+});
+
+// Sign Out
+$(`.signout`).on('click', (event) => {
+  event.preventDefault();
+  fetch('/api/v1/signout', {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+  })
+  .then(dataStream => dataStream.json())
+  .then(res => {
+      if (res.status === 200) {
+      window.location = '/signup';
+      }
   });
 });

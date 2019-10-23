@@ -23,35 +23,17 @@ router.get('/podcasts', (req, res) => {
   });
 });
 
-// router.post('/podcasts', (req, res) => {
-//   db.Podcast.create(req.body, (err, newPodcast) => {
-//     if (err) return console.log(err)
-
-//     res.json({
-//       status: 201,
-//       data: newPodcast,
-//     });
-//   });
-// });
-
-// routes for testing
-// router.get('/podcasts/:name', (req, res) => {
-//   let name = req.params.name;
-//   db.Podcast.find({ name: {$regex: `${name}`, $options: 'i'} }, (err, foundPodcast) => {
-//     if (err) return console.log(err);
-//     res.json({
-//       status: 200,
-//       data: foundPodcast,
-//     });
-//   });
-// });
-
 router.post('/podcasts/:id', (req, res) => {
-  db.Podcast.find({itunesLink: req.body.itunesLink}, (err, existingPodcast) => {
+  db.Podcast.findOne({itunesLink: req.body.itunesLink}, (err, existingPodcast) => {
     if (err) return console.log(err);
-    if (!existingPodcast.length) {
+    if (!existingPodcast) {
       db.Podcast.create(req.body, (err, newPodcast) => {
         if (err) return console.log(err);
+
+        newPodcast.heartCount = 1;
+        newPodcast.save((err, saved) => {
+          if (err) return console.log(err);
+        });
 
         db.User.findById(req.params.id, (err, foundUser) => {
           if (err) return console.log(err);
@@ -66,10 +48,15 @@ router.post('/podcasts/:id', (req, res) => {
         });
       });
     } else {
+      existingPodcast.heartCount += 1;
+      existingPodcast.save((err, updated) => {
+        if (err) return console.log(err);
+      });
+
       db.User.findById(req.params.id, (err, foundUser) => {
         if (err) return console.log(err);
-        foundUser.podcasts.push(existingPodcast[0]._id);
-        console.log(foundUser.podcasts);
+
+        foundUser.podcasts.push(existingPodcast._id);
         foundUser.save((err, updatedUser) => {
             if (err) return console.log(err);
             res.json({
@@ -93,7 +80,7 @@ router.get('/podcasts/:id', (req, res) => {
           count: foundUser.podcasts.length,
           data: foundUser.podcasts,
         });
-      })
+      });
   });
 
 router.put('/podcasts/:userId', (req, res) => {
@@ -107,14 +94,14 @@ router.put('/podcasts/:userId', (req, res) => {
         if (err) return console.log(err);
         res.sendStatus(200);
       });
-      db.Podcast.findOneAndUpdate({name: req.body.name}, (err, foundPodcast) => {
-      })
-    })
+      db.Podcast.findOne({name: req.body.name}, (err, foundPodcast) => {
+        console.log(foundPodcast);
+        foundPodcast.heartCount --;
+        foundPodcast.save((err, updated) => {
+          if (err) return console.log(err);
+        });
+      });
+    });
 });
-
-// ------------------------------------------- FEED ------------------------------------------- //
-
-// router.get('/feed/:userId', ctlr.auth.showFeed);
-
 
 module.exports = router;
