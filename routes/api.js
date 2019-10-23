@@ -52,11 +52,16 @@ router.get('/podcasts', (req, res) => {
 // });
 
 router.post('/podcasts/:id', (req, res) => {
-  db.Podcast.find({itunesLink: req.body.itunesLink}, (err, existingPodcast) => {
+  db.Podcast.findOne({itunesLink: req.body.itunesLink}, (err, existingPodcast) => {
     if (err) return console.log(err);
-    if (!existingPodcast.length) {
+    if (!existingPodcast) {
       db.Podcast.create(req.body, (err, newPodcast) => {
         if (err) return console.log(err);
+
+        newPodcast.heartCount = 1;
+        newPodcast.save((err, saved) => {
+          if (err) return console.log(err);
+        });
 
         db.User.findById(req.params.id, (err, foundUser) => {
           if (err) return console.log(err);
@@ -72,12 +77,15 @@ router.post('/podcasts/:id', (req, res) => {
         });
       });
     } else {
+      existingPodcast.heartCount += 1;
+      existingPodcast.save((err, updated) => {
+        if (err) return console.log(err);
+      });
+
       db.User.findById(req.params.id, (err, foundUser) => {
         if (err) return console.log(err);
 
-        console.log(existingPodcast);
-        foundUser.podcasts.push(existingPodcast[0]._id);
-        console.log(foundUser.podcasts);
+        foundUser.podcasts.push(existingPodcast._id);
         foundUser.save((err, updatedUser) => {
             if (err) return console.log(err);
             res.json({
