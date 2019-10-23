@@ -81,7 +81,12 @@ $('#results').on('click', '.open-heart', function() {
       console.log(err);
     }
   });
+
+  // GET Loved Podcasts
+  getUserPodcasts();
 });
+
+// UPDATE Remove Podcast from User Object
 
 $('#results').on('click', '.closed-heart', function() {
   $(this).removeClass('closed-heart');
@@ -90,10 +95,9 @@ $('#results').on('click', '.closed-heart', function() {
   $(this).removeClass('fas');
   $(this).addClass('far');
 
-  // ajax call to delete podcast from User document
   $.ajax({
-    method: 'DELETE',
-    url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
+    method: 'PUT',
+    url: `http://localhost:4000/api/v1/podcasts/${userId}`,
     data: {
       name: $(this).data('name'),
       artist: $(this).data('artist'),
@@ -101,22 +105,23 @@ $('#results').on('click', '.closed-heart', function() {
       imageSource: $(this).data('image-source'),
     },
     success: (res) => {
-      console.log('successfully deleted')
+      $(this).parents('div.col-sm-6').remove();
+      console.log('successfully removed')
     },
     error: (err) => {
       console.log(err);
     }
-
-  })
+  });
 });
 
 
 // Compare search results to user feed by itunesLink. If podcast is loved in feed, change icon in search to filled heart
 
 // Get user's loved podcasts
-const getLovedPods = (jsonData) => {
+const getLovedPods = (json) => {
+   console.log(json);
   const LovedPodcasts = [];
-  jsonData.data.forEach((podcast) => {
+  json.data.forEach((podcast) => {
     LovedPodcasts.push(podcast.itunesLink)
   });
   return LovedPodcasts;
@@ -135,7 +140,6 @@ const getUserPodcasts = () => {
   });
 };
 
-getUserPodcasts();
 
 
 // // Compare user's podcasts to search results

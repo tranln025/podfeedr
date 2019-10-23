@@ -19,12 +19,7 @@ router.delete('/signout', ctlr.auth.deleteSession);
 router.get('/podcasts', (req, res) => {
   db.Podcast.find({}, (err, allPodcasts) => {
     if (err) return console.log(err)
-    res.json({
-      status: 200,
-      count: allPodcasts.length,
-      data: allPodcasts,
-      requestedAt: new Date().toLocaleString()
-    });
+    res.json(allPodcasts);
   });
 });
 
