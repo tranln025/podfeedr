@@ -1,9 +1,33 @@
-body {
-    background-color: whitesmoke;
+.signup-body, .signin-body {
+    background-image: url('/images/podcast-bkgd.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
 }
 
 form {
     max-width: 600px;
+}
+
+/* Sign Up */
+
+body main {
+  padding: 0 30px;
+}
+
+.hook {
+  color: white;
+  margin-top: 30vh;
+}
+
+@media (max-width: 991.98px) {
+  .hook {
+    margin-top: 70px;
+  }
+}
+
+.hook h1 {
+  font-size: 80px;
 }
 
 #signin-form, #no-account {
@@ -31,44 +55,34 @@ form {
     color: #721c24;
 }
 
+/* Search/Feed */
+
 #results {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
-  .result-img {
-    width: 100%;
-    max-height: 293px;
-  }
+.result-img {
+  width: 100%;
+  max-height: 293px;
+}
 
-  .col-sm-6 {
-    max-width: 325px;
-  }
+.col-sm-6 {
+  max-width: 325px;
+}
 
-  .heart {
-    font-size: 20px;
-    color: #ff0000;
-  }
+.heart {
+  font-size: 20px;
+  color: #ff0000;
+}
 
-  .form-inline {
-    flex-wrap: nowrap;
-  }
+.form-inline {
+  flex-wrap: nowrap;
+}
 
-  #form-container {
-    margin-top: 60px;
-    max-width: 540px;
-  }
-
-  @media (min-width: 740px) and (max-width: 900px) {
-    #form-container {
-        margin-left: 40%;
-    }
-  }
-
-  @media (min-width: 900px) {
-      #form-container {
-          margin-left: 55%;
-      }
-  }
+#form-container {
+  margin-top: 90px;
+  max-width: 540px;
+}
