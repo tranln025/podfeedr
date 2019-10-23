@@ -57,6 +57,10 @@ body main {
 
 /* Search/Feed */
 
+a:hover {
+    text-decoration: none;
+}
+
 #results {
   display: flex;
   flex-direction: row;
@@ -85,4 +89,16 @@ body main {
 #form-container {
   margin-top: 90px;
   max-width: 540px;
+}
+
+.favorites-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.fa-plus {
+    padding-right: 10px;
 }
