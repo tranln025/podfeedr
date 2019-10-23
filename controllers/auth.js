@@ -85,7 +85,7 @@ const deleteAllUsers = (req, res) => {
 
 // SECTION POST Login
 const createSession = (req, res) => {
-    console.log('Request session object --> ', req.session)
+    // console.log('Request session object --> ', req.session)
     db.User.findOne({ username: req.body.username }, (err, foundUser) => {
         if (err) return res.status(500).json({ 
             status: 500,

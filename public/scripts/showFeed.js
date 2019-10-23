@@ -5,6 +5,8 @@ $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.use
 
 const userId = window.location.pathname.split('/')[2];
 
+// GET Display Feed
+
 const displayFeed = (res) => {
   const podcasts = res.data;
   // console.log(podcasts);
@@ -42,6 +44,36 @@ $('document').ready(
     success: displayFeed,
   })
 );
+
+
+// UPDATE Remove Podcast from User Object
+
+$('#results').on('click', '.closed-heart', function() {
+  $(this).removeClass('closed-heart');
+  $(this).addClass('open-heart');
+
+  $(this).removeClass('fas');
+  $(this).addClass('far');
+
+  $.ajax({
+    method: 'PUT',
+    url: `http://localhost:4000/api/v1/podcasts/${userId}`,
+    data: {
+      name: $(this).data('name'),
+      artist: $(this).data('artist'),
+      itunesLink: $(this).data('itunes-link'),
+      imageSource: $(this).data('image-source'),
+    },
+    success: (res) => {
+      $(this).parents('div.col-sm-6').remove();
+      console.log('successfully removed')
+    },
+    error: (err) => {
+      console.log(err);
+    }
+  });
+});
+
 
 // Sign Out
 $(`.signout`).on('click', (event) => {

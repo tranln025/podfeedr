@@ -1,7 +1,11 @@
 console.log('search js connected');
 
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
+
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
+
+const resultLinks = [];
+
 
 // user submits a search query
 const onSuccess = (res) => {
@@ -29,8 +33,10 @@ const onSuccess = (res) => {
     </div>
   </div>`;
   $searchResults.append(temp);
+
+  // Push each result's itunesLink into resultLinks array
+  resultLinks.push(result.collectionViewUrl);
   });
-  console.log(res);
 };
 
 $('form').on('submit', (e) => {
@@ -85,4 +91,21 @@ $('#results').on('click', '.closed-heart', function() {
   $(this).addClass('far');
 
   // ajax call to delete podcast from User document
+  $.ajax({
+    method: 'DELETE',
+    url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
+    data: {
+      name: $(this).data('name'),
+      artist: $(this).data('artist'),
+      itunesLink: $(this).data('itunes-link'),
+      imageSource: $(this).data('image-source'),
+    },
+    success: (res) => {
+      console.log('successfully deleted')
+    },
+    error: (err) => {
+      console.log(err);
+    }
+
+  })
 });
