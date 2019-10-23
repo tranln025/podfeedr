@@ -7,7 +7,7 @@ const userId = window.location.pathname.split('/')[2];
 
 const displayFeed = (res) => {
   const podcasts = res.data;
-  console.log(podcasts);
+  // console.log(podcasts);
   const $results = $('#results');
   $results.empty();
   podcasts.forEach((result) => {

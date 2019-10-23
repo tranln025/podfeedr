@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- main css file -->
     <link rel="stylesheet" href="/styles/main.css">
+    <!-- font awesome for heart icons -->
     <script src="https://kit.fontawesome.com/8f0079a728.js" crossorigin="anonymous" defer></script>
+    <!-- jquery -->
     <script
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous" defer></script>
+    <!-- bootstrap js files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
-    <!-- <script src="/scripts/search.js" defer></script> -->
+    <!-- main js file -->
     <script src="/scripts/showFeed.js" defer></script>
     <title>Your Feed | Podfeedr</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-        <a class="navbar-brand" href="/">Podfeedr</a>
+        <a class="navbar-brand" href="/signup">Podfeedr</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,7 +40,14 @@
         </div>
     </nav>
     <main>
-        <h1 class="favorites-heading">Your Favorite Podcasts</h1>
+        <div class="favorites-top">
+            <a href="/search">
+                <button class="btn btn-info">
+                    <i class="fas fa-plus"></i>Search for Podcasts
+                </button>
+            </a>
+            <h1 class="favorites-heading">Your Favorite Podcasts</h1>
+        </div>
         <div class="album py-5 container">
             <div id="results">
             </div>
