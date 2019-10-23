@@ -16,6 +16,10 @@ const podcastSchema = new Schema({
   reviews: {
     type: Schema.Types.ObjectId,
     ref: 'Review',
+  },
+  heartCount: {
+    type: Number,
+    default: 0,
   }
 });
 
