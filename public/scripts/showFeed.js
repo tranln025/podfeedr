@@ -11,27 +11,31 @@ const displayFeed = (res) => {
   const $results = $('#results');
   $results.empty();
   podcasts.forEach((result) => {
-  const temp = `<div class="col-sm-6">
-    <div class="card mb-4 shadow-sm">
-      <img class="result-img" src="${result.imageSource}" />
-      <div class="card-body">
-        <p class="card-text podcast-name">${result.name}</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="btn-group">
-            <a href="${result.itunesLink}" target="_blank">
-              <button type="button" class="btn btn-sm btn-outline-secondary">iTunes</button>
-            </a>
+    const heartCount = 0;
+    const temp = `<div class="col-sm-6">
+      <div class="card mb-4 shadow-sm">
+        <img class="result-img" src="${result.imageSource}" />
+        <div class="card-body">
+          <p class="card-text podcast-name">${result.name}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href="${result.itunesLink}" target="_blank">
+                <button type="button" class="btn btn-sm btn-outline-secondary">iTunes</button>
+              </a>
+            </div>
+            <div class="heart-container">
+              <span class="heart-count">${result.heartCount}</span>
+              <i class="fas fa-heart heart closed-heart"
+              data-name="${result.name}"
+              data-artist="${result.artist}"
+              data-itunes-link="${result.itunesLink}"
+              data-image-source="${result.imageSource}"></i>
+            </div>
           </div>
-          <i class="fas fa-heart heart closed-heart"
-          data-name="${result.name}"
-          data-artist="${result.artist}"
-          data-itunes-link="${result.itunesLink}"
-          data-image-source="${result.imageSource}"></i>
         </div>
       </div>
-    </div>
-  </div>`;
-  $results.append(temp);
+    </div>`;
+    $results.append(temp);
   });
 };
 

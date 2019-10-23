@@ -3,32 +3,37 @@ console.log('search js connected');
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 
+let heartCount = 0;
+
 // user submits a search query
 const onSuccess = (res) => {
   const $searchResults = $('#results');
   $searchResults.empty();
   res.results.forEach((result) => {
-  const temp = `<div class="col-sm-6">
-    <div class="card mb-4 shadow-sm">
-      <img class="result-img" src="${result.artworkUrl600}" />
-      <div class="card-body">
-        <p class="card-text podcast-name">${result.collectionName}</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="btn-group">
-            <a href="${result.collectionViewUrl}" target="_blank">
-              <button type="button" class="btn btn-sm btn-outline-secondary">iTunes</button>
-            </a>
+    const temp = `<div class="col-sm-6">
+      <div class="card mb-4 shadow-sm">
+        <img class="result-img" src="${result.artworkUrl600}" />
+        <div class="card-body">
+          <p class="card-text podcast-name">${result.collectionName}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <a href="${result.collectionViewUrl}" target="_blank">
+                <button type="button" class="btn btn-sm btn-outline-secondary">iTunes</button>
+              </a>
+            </div>
+            <div class="heart-container">
+              <span class="heart-count">${heartCount}</span>
+              <i class="far fa-heart heart open-heart"
+              data-name="${result.collectionName}"
+              data-artist="${result.artistName}"
+              data-itunes-link="${result.collectionViewUrl}"
+              data-image-source="${result.artworkUrl600}"></i>
+            </div>
           </div>
-          <i class="far fa-heart heart open-heart"
-          data-name="${result.collectionName}"
-          data-artist="${result.artistName}"
-          data-itunes-link="${result.collectionViewUrl}"
-          data-image-source="${result.artworkUrl600}"></i>
         </div>
       </div>
-    </div>
-  </div>`;
-  $searchResults.append(temp);
+    </div>`;
+    $searchResults.append(temp);
   });
   console.log(res);
 };
