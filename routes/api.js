@@ -55,7 +55,6 @@ router.post('/podcasts/:id', (req, res) => {
 
         db.User.findById(req.params.id, (err, foundUser) => {
           if (err) return console.log(err);
-
           foundUser.podcasts.push(newPodcast);
           foundUser.save((err, updatedUser) => {
               if (err) return console.log(err);
@@ -69,8 +68,6 @@ router.post('/podcasts/:id', (req, res) => {
     } else {
       db.User.findById(req.params.id, (err, foundUser) => {
         if (err) return console.log(err);
-
-        console.log(existingPodcast);
         foundUser.podcasts.push(existingPodcast[0]._id);
         console.log(foundUser.podcasts);
         foundUser.save((err, updatedUser) => {
@@ -111,7 +108,6 @@ router.put('/podcasts/:userId', (req, res) => {
         res.sendStatus(200);
       });
       db.Podcast.findOneAndUpdate({name: req.body.name}, (err, foundPodcast) => {
-        foundPodcast.heartCount --;
       })
     })
 });
