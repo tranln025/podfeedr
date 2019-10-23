@@ -3,13 +3,29 @@ console.log('search js connected');
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 
-let heartCount = 0;
+let loved;
+
+$.ajax({
+  method: 'GET',
+  url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
+  success: (res) => {
+    loved = res.data;
+  },
+  error: (err) => console.log(err)
+})
 
 // user submits a search query
 const onSuccess = (res) => {
+  const lovedNames = loved.map(x => x.name);
+  let heartCount = 0;
+  let heartClasses = 'far fa-heart heart open-heart';
   const $searchResults = $('#results');
   $searchResults.empty();
   res.results.forEach((result) => {
+    if (lovedNames.includes(result.collectionName)) {
+      heartCount = loved.find(x => x.name === result.collectionName).heartCount;
+      heartClasses = 'fas fa-heart heart closed-heart';
+    }
     const temp = `<div class="col-sm-6">
       <div class="card mb-4 shadow-sm">
         <img class="result-img" src="${result.artworkUrl600}" />
@@ -23,7 +39,7 @@ const onSuccess = (res) => {
             </div>
             <div class="heart-container">
               <span class="heart-count">${heartCount}</span>
-              <i class="far fa-heart heart open-heart"
+              <i class="${heartClasses}"
               data-name="${result.collectionName}"
               data-artist="${result.artistName}"
               data-itunes-link="${result.collectionViewUrl}"
@@ -42,15 +58,6 @@ $('form').on('submit', (e) => {
   e.preventDefault();
   let term = $('#search-bar').val();
   term = term.replace(' ', '+');
-  // $.ajax({
-  //   method: 'GET',
-  //   url: `https://itunes.apple.com/search?term=${term}&media=podcast&limit=10`,
-  //   dataType: 'json',
-  //   success: onSuccess,
-  //   error: (err) => {
-  //     console.log({err});
-  //   }
-  // })
   $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=10&callback=onSuccess`);
 });
 
