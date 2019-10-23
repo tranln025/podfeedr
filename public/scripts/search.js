@@ -2,7 +2,10 @@ console.log('search js connected');
 
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 
+$('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
+
 const resultLinks = [];
+
 
 // user submits a search query
 const onSuccess = (res) => {
