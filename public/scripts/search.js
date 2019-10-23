@@ -19,10 +19,10 @@ $.ajax({
 const onSuccess = (res) => {
   const lovedNames = loved.map(x => x.name);
   let heartCount = 0;
-  let heartClasses = 'far fa-heart heart open-heart';
   const $searchResults = $('#results');
   $searchResults.empty();
   res.results.forEach((result) => {
+    let heartClasses = 'far fa-heart heart open-heart';
     if (lovedNames.includes(result.collectionName)) {
       heartCount = loved.find(x => x.name === result.collectionName).heartCount;
       heartClasses = 'fas fa-heart heart closed-heart';
@@ -87,9 +87,6 @@ $('#results').on('click', '.open-heart', function() {
       console.log(err);
     }
   });
-
-  // GET Loved Podcasts
-  getUserPodcasts();
 });
 
 // UPDATE Remove Podcast from User Object
@@ -103,7 +100,7 @@ $('#results').on('click', '.closed-heart', function() {
 
   $.ajax({
     method: 'PUT',
-    url: `http://localhost:4000/api/v1/podcasts/${userId}`,
+    url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
     data: {
       name: $(this).data('name'),
       artist: $(this).data('artist'),
@@ -111,7 +108,6 @@ $('#results').on('click', '.closed-heart', function() {
       imageSource: $(this).data('image-source'),
     },
     success: (res) => {
-      $(this).parents('div.col-sm-6').remove();
       console.log('successfully removed')
     },
     error: (err) => {
@@ -119,38 +115,3 @@ $('#results').on('click', '.closed-heart', function() {
     }
   });
 });
-
-
-// Compare search results to user feed by itunesLink. If podcast is loved in feed, change icon in search to filled heart
-
-// Get user's loved podcasts
-const getLovedPods = (json) => {
-   console.log(json);
-  const LovedPodcasts = [];
-  json.data.forEach((podcast) => {
-    LovedPodcasts.push(podcast.itunesLink)
-  });
-  return LovedPodcasts;
-}
-
-const lovedLinks = getLovedPods();
-
-const getUserPodcasts = () => {
-  $.ajax({
-    method: 'GET',
-    url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
-    success: getLovedPods,
-    error: (err) => {
-      console.log(err)
-    }
-  });
-};
-
-
-
-// // Compare user's podcasts to search results
-// lovedLinks.forEach(link => {
-//   if (resultLinks.includes(link)) {
-//     console.log(true);
-//   }
-// })
