@@ -22,6 +22,7 @@ const onSuccess = (res) => {
   const $searchResults = $('#results');
   $searchResults.empty();
   res.results.forEach((result) => {
+    heartCount = 0;
     heartClasses = 'far fa-heart heart open-heart'
     if (lovedNames.includes(result.collectionName)) {
       heartCount = loved.find(x => x.name === result.collectionName).heartCount;
@@ -89,6 +90,8 @@ $('#results').on('click', '.open-heart', function() {
   });
 });
 
+// UPDATE Remove Podcast from User Object and Decrease Heart Count
+
 $('#results').on('click', '.closed-heart', function() {
   $(this).removeClass('closed-heart');
   $(this).addClass('open-heart');
@@ -96,9 +99,8 @@ $('#results').on('click', '.closed-heart', function() {
   $(this).removeClass('fas');
   $(this).addClass('far');
 
-  // ajax call to delete podcast from User document
   $.ajax({
-    method: 'DELETE',
+    method: 'PUT',
     url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
     data: {
       name: $(this).data('name'),
@@ -107,12 +109,11 @@ $('#results').on('click', '.closed-heart', function() {
       imageSource: $(this).data('image-source'),
     },
     success: (res) => {
-      console.log('successfully deleted')
+      console.log('successfully removed')
     },
     error: (err) => {
       console.log(err);
     }
-
   })
 });
 
