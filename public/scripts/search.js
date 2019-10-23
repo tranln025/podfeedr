@@ -106,3 +106,38 @@ $('#results').on('click', '.closed-heart', function() {
 
   })
 });
+
+
+// Compare search results to user feed by itunesLink. If podcast is loved in feed, change icon in search to filled heart
+
+// Get user's loved podcasts
+const getLovedPods = (jsonData) => {
+  const LovedPodcasts = [];
+  jsonData.data.forEach((podcast) => {
+    LovedPodcasts.push(podcast.itunesLink)
+  });
+  return LovedPodcasts;
+}
+
+const lovedLinks = getLovedPods();
+
+const getUserPodcasts = () => {
+  $.ajax({
+    method: 'GET',
+    url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
+    success: getLovedPods,
+    error: (err) => {
+      console.log(err)
+    }
+  });
+};
+
+getUserPodcasts();
+
+
+// // Compare user's podcasts to search results
+// lovedLinks.forEach(link => {
+//   if (resultLinks.includes(link)) {
+//     console.log(true);
+//   }
+// })
