@@ -19,7 +19,12 @@ router.delete('/signout', ctlr.auth.deleteSession);
 router.get('/podcasts', (req, res) => {
   db.Podcast.find({}, (err, allPodcasts) => {
     if (err) return console.log(err)
-    res.json(allPodcasts);
+    res.json({
+      status: 200,
+      count: allPodcasts.length,
+      data: allPodcasts,
+      requestedAt: new Date().toLocaleString()
+    });
   });
 });
 
@@ -87,25 +92,46 @@ router.get('/podcasts/:id', (req, res) => {
   });
 
 
-router.delete('/podcasts/:userId', (req, res) => {
+// router.delete('/podcasts/:userId', (req, res) => {
+//   db.User.findById(req.params.userId)
+//   .populate('podcasts')
+//   .exec((err, foundUser) =>  {
+//     if (err) return console.log('error finding user', err);
+
+//     // Get index of req.body in foundUser.podcasts array
+//     index = foundUser.podcasts.findIndex(x => x.itunesLink == req.body.itunesLink)
+
+//     db.Podcast.findByIdAndDelete(foundUser.podcasts[index]._id, (error, deletedPodcast) => {
+//       if (error) console.log(error);
+//       res.json({
+//         status: 200,
+//         data: deletedPodcast,
+//       });
+//     });
+//   });
+// });
+
+// Find user to edit
+// Find that user's podcasts list
+// Compare the request to user.podcasts
+// Get index of the podcast in user.podcasts
+// Remove podcast reference in user.podcasts
+router.put('/podcasts/:userId', (req, res) => {
   db.User.findById(req.params.userId)
-  .populate('podcasts')
-  .exec((err, foundUser) =>  {
-    if (err) return console.log('error finding user', err);
-
-    // Get index of req.body in foundUser.podcasts array
-    index = foundUser.podcasts.findIndex(x => x.itunesLink == req.body.itunesLink)
-
-    db.Podcast.findByIdAndDelete(foundUser.podcasts[index]._id, (error, deletedPodcast) => {
-      if (error) console.log(error);
-      res.json({
-        status: 200,
-        data: deletedPodcast,
+    .populate('podcasts')
+    .exec((err, foundUser) =>  {
+      console.log('founduser', foundUser)
+      if (err) return console.log('error finding user', err);
+      const index = foundUser.podcasts.findIndex(x => x.itunesLink === req.body.itunesLink)
+      console.log('index', index);
+      foundUser.podcasts.splice(index,1);
+      console.log('UPDATED PODCASTS -->', foundUser.podcasts);
+      foundUser.save((err, updatedUser) => {
+        if (err) return console.log(err);
+        res.sendStatus(200);
       });
-    });
-  });
+    })
 });
-
 
 // ------------------------------------------- FEED ------------------------------------------- //
 

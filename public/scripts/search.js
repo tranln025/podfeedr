@@ -2,6 +2,8 @@ console.log('search js connected');
 
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 
+const resultLinks = [];
+
 // user submits a search query
 const onSuccess = (res) => {
   const $searchResults = $('#results');
@@ -28,8 +30,10 @@ const onSuccess = (res) => {
     </div>
   </div>`;
   $searchResults.append(temp);
+
+  // Push each result's itunesLink into resultLinks array
+  resultLinks.push(result.collectionViewUrl);
   });
-  console.log(res);
 };
 
 $('form').on('submit', (e) => {

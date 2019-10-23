@@ -45,7 +45,7 @@ $('document').ready(
 );
 
 
-// DELETE Remove Podcast
+// UPDATE Remove Podcast from User Object
 
 $('#results').on('click', '.closed-heart', function() {
   $(this).removeClass('closed-heart');
@@ -55,7 +55,7 @@ $('#results').on('click', '.closed-heart', function() {
   $(this).addClass('far');
 
   $.ajax({
-    method: 'DELETE',
+    method: 'PUT',
     url: `http://localhost:4000/api/v1/podcasts/${userId}`,
     data: {
       name: $(this).data('name'),
@@ -65,7 +65,7 @@ $('#results').on('click', '.closed-heart', function() {
     },
     success: (res) => {
       $(this).parents('div.col-sm-6').remove();
-      console.log('successfully deleted')
+      console.log('successfully removed')
     },
     error: (err) => {
       console.log(err);
