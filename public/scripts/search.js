@@ -89,7 +89,7 @@ $('#results').on('click', '.open-heart', function() {
   });
 });
 
-// UPDATE Remove Podcast from User Object
+// UPDATE Remove Podcast from User Object and Decrease Heart Count
 
 $('#results').on('click', '.closed-heart', function() {
   $(this).removeClass('closed-heart');

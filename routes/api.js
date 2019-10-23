@@ -103,16 +103,16 @@ router.put('/podcasts/:userId', (req, res) => {
   db.User.findById(req.params.userId)
     .populate('podcasts')
     .exec((err, foundUser) =>  {
-      console.log('founduser', foundUser)
       if (err) return console.log('error finding user', err);
       const index = foundUser.podcasts.findIndex(x => x.itunesLink === req.body.itunesLink)
-      console.log('index', index);
       foundUser.podcasts.splice(index,1);
-      console.log('UPDATED PODCASTS -->', foundUser.podcasts);
       foundUser.save((err, updatedUser) => {
         if (err) return console.log(err);
         res.sendStatus(200);
       });
+      db.Podcast.findOneAndUpdate({name: req.body.name}, (err, foundPodcast) => {
+        foundPodcast.heartCount --;
+      })
     })
 });
 
