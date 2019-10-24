@@ -4,11 +4,11 @@ $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 
 $('.searchbar').on('mouseover', () => {
-  $(`.searchbar`).addClass('searchbar-hover')
+  $(`.searchbar`).addClass('searchbar-hover');
 });
 
-$(`.search_input`).parent().on('blur', () => {
-  $(`.search_input`).parent().removeClass('searchbar-hover')
+$(`.search_input`).on('blur', () => {
+  $(`.searchbar`).removeClass('searchbar-hover');
 });
 
 let loved;
