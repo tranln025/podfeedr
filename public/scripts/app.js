@@ -40,6 +40,19 @@ form && form.addEventListener('submit', (event) => {
                     Please enter a valid email address.
                 </div>
             `);
+        } else if ($('#password2').length) {
+            console.log($('#password2').length)
+            formIsValid = false;
+            if ($(`#password`).val() !== $(`#password2`).val()) {
+                if (element.type === "password") {
+                    $(element).addClass('is-invalid');
+                    $(element).parent('div').append(`
+                        <div class="invalid-feedback">
+                            Passwords do not match.
+                        </div>
+                    `);
+                };
+            }
         }
 
         // If all inputs are valid, form is valid and store input values in userData object
@@ -47,22 +60,8 @@ form && form.addEventListener('submit', (event) => {
             userData[element.name] = element.value;
         };
 
-
-
-    // SECTION If signup form is valid & passwords match, store data in database
-    if (form.id === 'signup' && formIsValid) {
-
-        // Check if passwords match
-        if ($(`#password`).val() !== $(`#password2`).val()) {
-            if (element.type === "password") {
-                $(element).addClass('is-invalid');
-                $(element).parent('div').append(`
-                    <div class="invalid-feedback">
-                        Passwords do not match.
-                    </div>
-                `);
-            };
-        } else {
+        // SECTION If signup form is valid & passwords match, store data in database
+        if (form.id === 'signup' && formIsValid) {
             // console.log('userData: ', userData);
             fetch('/api/v1/signup', {
                 method: 'POST',
@@ -78,36 +77,35 @@ form && form.addEventListener('submit', (event) => {
             })
             .catch(err => console.log(err));
         };
-    };
 
-    // SECTION If sign-in form is valid, store data
-    if (form.id === 'signin' && formIsValid) {
-        console.log('Submitting user signin: ', userData);
-        fetch('/api/v1/signin', {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
-        .then(dataStream => dataStream.json())
-        .then(res => {
-            if (res.status === 400) {
-                $(`#password`).after(`
-                    <div class="error-msg">
-                        Username or password is incorrect. Please try again.
-                    </div>
-                `)
-            }
-            if (res.status === 201) {
-                window.sessionStorage.setItem(`userId`, `${res.data.id}`);
-                console.log(res);
-                window.sessionStorage.setItem(`username`, `${userData.username}`);
-                return window.location = `/feed/${res.data.id}`
-            };
-        })
-        .catch(err => console.log(err));
+        // SECTION If sign-in form is valid, store data
+        if (form.id === 'signin' && formIsValid) {
+            console.log('Submitting user signin: ', userData);
+            fetch('/api/v1/signin', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(dataStream => dataStream.json())
+            .then(res => {
+                if (res.status === 400) {
+                    $(`#password`).after(`
+                        <div class="invalid-feedback">
+                            Username or password is incorrect. Please try again.
+                        </div>
+                    `)
+                }
+                if (res.status === 201) {
+                    window.sessionStorage.setItem(`userId`, `${res.data.id}`);
+                    console.log(res);
+                    window.sessionStorage.setItem(`username`, `${userData.username}`);
+                    return window.location = `/feed/${res.data.id}`
+                };
+            })
+            .catch(err => console.log(err));
         };
     });
 });

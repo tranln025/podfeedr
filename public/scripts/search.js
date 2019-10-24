@@ -3,6 +3,14 @@ console.log('search js connected');
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 
+$('.searchbar').on('mouseover', () => {
+  $(`.searchbar`).addClass('searchbar-hover')
+});
+
+$(`.search_input`).parent().on('blur', () => {
+  $(`.search_input`).parent().removeClass('searchbar-hover')
+});
+
 let loved;
 
 $.ajax({
@@ -34,8 +42,9 @@ const onSuccess = (res) => {
         <img class="result-img" src="${result.artworkUrl600}" />
         <div class="card-body">
           <p class="card-text podcast-name">${result.collectionName}<br/>
-          <small class="text-muted">${result.artistName}</small>
-          </p>
+          <small class="text-muted">${result.artistName}</small></p>
+        </div>
+        <div class="card-footer">
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <a href="${result.collectionViewUrl}" target="_blank">
