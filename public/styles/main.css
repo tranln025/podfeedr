@@ -226,6 +226,29 @@ a:hover {
   }
 }
 
+
+@media (max-width: 768px) {
+  .favorites-top {
+    text-align: center;
+  }
+
+  .border-info {
+    right: 0;
+  }
+  
+  .favorites-top {
+    flex-direction: column;
+  }
+
+  .favorites-top .card {
+    margin-top: 30px;
+  }
+
+  .favorites-heading {
+    margin: 30px 0;
+  }
+}
+
 @media (max-width: 576px) {
   #signin-form {
     height: 350px;

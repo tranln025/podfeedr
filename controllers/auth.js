@@ -68,7 +68,7 @@ const createUser = (req, res) => {
     });
 };
 
-// SECTION DELETE All Users
+// SECTION FOR TESTING: DELETE All Users
 const deleteAllUsers = (req, res) => {
     db.User.deleteMany({}, (err, deletedUsers) => {
         if (err) return console.log(err);
