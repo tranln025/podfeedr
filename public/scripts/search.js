@@ -3,6 +3,14 @@ console.log('search js connected');
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 
+<<<<<<< HEAD
+$('.searchbar').on('mouseover', () => {
+  $(`.searchbar`).addClass('searchbar-hover');
+});
+
+$(`.search_input`).on('blur', () => {
+  $(`.searchbar`).removeClass('searchbar-hover');
+=======
 let all;
 
 $.ajax({
@@ -12,6 +20,7 @@ $.ajax({
     all = res.data;
   },
   error: (err) => console.log(err)
+>>>>>>> submaster
 });
 
 let loved;
@@ -48,8 +57,12 @@ const onSuccess = (res) => {
         <img class="result-img" src="${result.artworkUrl600}" />
         <div class="card-body">
           <p class="card-text podcast-name">${result.collectionName}<br/>
+<<<<<<< HEAD
+          <small class="text-muted">${result.artistName}</small></p>
+=======
           <small class="text-muted">${result.artistName}</small>
           </p>
+>>>>>>> submaster
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-between align-items-center">

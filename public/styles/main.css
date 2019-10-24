@@ -3,6 +3,20 @@
   opacity: .8;
 }
 
+/* Nav bar */
+.navbar-toggler {
+  display: none;
+}
+
+.navbar-collapse {
+  flex-basis: 0;
+  text-align: right;
+}
+
+.collapse:not(.show) {
+  display: inline-block;
+}
+
 /* Sign Up/Sign In */
 .signup-body, .signin-body {
   background-image: url('/images/podcast-bkgd.png');
@@ -21,13 +35,7 @@ body main {
 
 .hook {
   color: white;
-  margin-top: 30vh;
-}
-
-@media (max-width: 991.98px) {
-  .hook {
-    margin-top: 70px;
-  }
+  margin-top: 20vh;
 }
 
 .hook h1 {
@@ -72,17 +80,10 @@ body main {
   top: 20px;
 }
 
-@media (max-width: 576px) {
-  #signin-form {
-    height: 350px;
-  }
-}
-
 /* Search/Feed */
 
 .feed-body, .search-body {
-  /* bkgd img src: https://www.freepik.com/free-photo/elegant-white-background-with-gray-abstract-shapes_5083072.htm */
-  background-image: url('/images/19952.jpg');
+  background-image: url('http://images.freecreatives.com/wp-content/uploads/2015/04/white-linen-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -123,7 +124,6 @@ a:hover {
 }
 
 #form-container {
-  margin-top: 90px;
   max-width: 540px;
 }
 
@@ -148,9 +148,9 @@ a:hover {
   background-color: #353b48;
   border-radius: 30px;
   padding: 10px;
-  }
+}
 
-  .search_input{
+.search_input{
   color: white;
   border: 0;
   outline: 0;
@@ -159,21 +159,29 @@ a:hover {
   caret-color:transparent;
   line-height: 40px;
   transition: width 0.4s linear;
-  }
+}
 
-  .searchbar:hover > .search_input{
+/* 
+.searchbar:hover > .search_input{
   padding: 0 10px;
   width: 450px;
   caret-color:#17a2b8;
   transition: width 0.4s linear;
-  }
+} */
 
-  .searchbar:hover > .search_icon{
+.searchbar-hover > .search_input{
+  padding: 0 10px;
+  width: 450px;
+  caret-color:#17a2b8;
+  transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_icon{
   background: white;
   color: #17a2b8;
-  }
+}
 
-  .search_icon{
+.search_icon{
   height: 40px;
   width: 40px;
   float: right;
@@ -182,4 +190,24 @@ a:hover {
   align-items: center;
   border-radius: 50%;
   color:white;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .hook {
+    margin: 50px auto 50px auto;
   }
+}
+
+@media (max-width: 576px) {
+  #signin-form {
+    height: 350px;
+  }
+
+  .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 300px;
+    caret-color:#17a2b8;
+    transition: width 0.4s linear;
+  }  
+}
