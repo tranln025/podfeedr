@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- main css file -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- font awesome for icons -->
+  <script src="https://kit.fontawesome.com/8f0079a728.js" crossorigin="anonymous" defer></script>
+  <!-- jquery -->
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous" defer></script>
+  <!-- main js file -->
+  <script src="/scripts/search.js" defer></script>
+  <title>Search | Podfeedr</title>
+</head>
+<body class="search-body">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4 shadow">
+        <a class="navbar-brand" href="/signup">Podfeedr</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto mr-4">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span id="username-nav-link"></span>
+                    </a>
+                </li>
+            </ul>
+            <button class="btn btn-outline-info my-2 my-sm-0 signout" type="submit">Sign Out</button>
+        </div>
+    </nav>
+  <main>
+    <h1>Search for podcasts</h1>
+    <button type="text" id="luckyButton" class="btn btn-outline-info">I'm feeling lucky</button>
+    <!-- Search bar source: https://bootsnipp.com/snippets/GaeQR -->
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+          <div class="searchbar" >
+            <input class="search_input" type="text" name="" placeholder="What podcast are you searching for?">
+            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+          </div>
+        </div>
+      </div>
+    <div class="album py-5 container">
+      <div id="results">
+      </div>
+    </div>
+  </main>
+</body>
+</html>
