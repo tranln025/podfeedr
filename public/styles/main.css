@@ -1,19 +1,18 @@
-.signup-body, .signin-body {
-    background-image: url('/images/podcast-bkgd.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-form {
-    max-width: 600px;
-}
-
 .bg-dark {
   opacity: .8;
 }
 
-/* Sign Up */
+/* Sign Up/Sign In */
+.signup-body, .signin-body {
+  background-image: url('/images/podcast-bkgd.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+form {
+  max-width: 600px;
+}
 
 body main {
   padding: 0 30px;
@@ -39,8 +38,12 @@ body main {
     margin: 0 auto;
 }
 
+.signinbtn {
+  text-align: center;
+}
+
 #no-account {
-    margin-top: 7px;
+    margin-top: 20px;
     text-align: center;
     padding: 20px 0;
 }
@@ -59,12 +62,18 @@ body main {
     color: #721c24;
 }
 
+.jumbotron {
+  height: 100%;
+}
+
+.signup-btn, .signin-btn {
+  position: relative;
+  top: 20px;
+}
+
 /* Search/Feed */
 
 .feed-body, .search-body {
-  /* background-image: url('/images/teal-bkgd.png');*/
-
-  /* background-image: url('/images/wood.jpeg'); */
   background-image: url('/images/19952.jpg');
   background-size: cover;
   background-repeat: no-repeat;
