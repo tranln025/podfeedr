@@ -3,6 +3,7 @@ console.log('search js connected');
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 
+// check podcasts db to get heart counts
 let all;
 
 $.ajax({
@@ -14,6 +15,7 @@ $.ajax({
   error: (err) => console.log(err)
 });
 
+// check user's podcasts to see if user hearted a podcast
 let loved;
 
 $.ajax({
@@ -24,6 +26,7 @@ $.ajax({
   },
   error: (err) => console.log(err)
 });
+
 
 // user submits a search query
 const onSuccess = (res) => {
@@ -73,6 +76,20 @@ const onSuccess = (res) => {
     $searchResults.append(temp);
   });
 };
+
+// i'm feeling lucky
+const chooseRandomSearchChar = () => {
+  // choose random num between 97 and 122 then convert to letter
+  const num = Math.floor(97 + Math.random()*((122 - 97) + 1));
+  const letter = String.fromCharCode(num);
+  return letter;
+};
+
+$('#luckyButton').on('click', () => {
+  let term = chooseRandomSearchChar();
+  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&entity=podcast&limit=12&callback=onSuccess`);
+});
+// ------
 
 $(`.search_input`).on('keyup', () => {
   let term = $('.search_input').val();
