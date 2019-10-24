@@ -1,4 +1,5 @@
 .bg-dark {
+  background-color: #202326!important;
   opacity: .8;
 }
 
@@ -71,9 +72,16 @@ body main {
   top: 20px;
 }
 
+@media (max-width: 576px) {
+  #signin-form {
+    height: 350px;
+  }
+}
+
 /* Search/Feed */
 
 .feed-body, .search-body {
+  /* bkgd img src: https://www.freepik.com/free-photo/elegant-white-background-with-gray-abstract-shapes_5083072.htm */
   background-image: url('/images/19952.jpg');
   background-size: cover;
   background-repeat: no-repeat;
