@@ -40,45 +40,45 @@ form && form.addEventListener('submit', (event) => {
                     Please enter a valid email address.
                 </div>
             `);
+        } else if ($('#password2').length) {
+            console.log($('#password2').length)
+            formIsValid = false;
+            if ($(`#password`).val() !== $(`#password2`).val()) {
+                if (element.type === "password") {
+                    $(element).addClass('is-invalid');
+                    $(element).parent('div').append(`
+                        <div class="invalid-feedback">
+                            Passwords do not match.
+                        </div>
+                    `);
+                };
+            }
         }
 
         // If all inputs are valid, form is valid and store input values in userData object
         if (formIsValid) {
             userData[element.name] = element.value;
         };
-
-
+    // });
 
     // SECTION If signup form is valid & passwords match, store data in database
     if (form.id === 'signup' && formIsValid) {
-
-        // Check if passwords match
-        if ($(`#password`).val() !== $(`#password2`).val()) {
-            if (element.type === "password") {
-                $(element).addClass('is-invalid');
-                $(element).parent('div').append(`
-                    <div class="invalid-feedback">
-                        Passwords do not match.
-                    </div>
-                `);
-            };
-        } else {
-            // console.log('userData: ', userData);
-            fetch('/api/v1/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userData)
-            })
-            .then(dataStream => dataStream.json())
-            .then(res => {
-                console.log(res);
-                if (res.status === 201) return window.location = '/signin';
-            })
-            .catch(err => console.log(err));
-        };
+        // console.log('userData: ', userData);
+        fetch('/api/v1/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(dataStream => dataStream.json())
+        .then(res => {
+            console.log(res);
+            if (res.status === 201) return window.location = '/signin';
+        })
+        .catch(err => console.log(err));
     };
+
 
     // SECTION If sign-in form is valid, store data
     if (form.id === 'signin' && formIsValid) {
@@ -95,7 +95,7 @@ form && form.addEventListener('submit', (event) => {
         .then(res => {
             if (res.status === 400) {
                 $(`#password`).after(`
-                    <div class="error-msg">
+                    <div class="invalid-feedback">
                         Username or password is incorrect. Please try again.
                     </div>
                 `)

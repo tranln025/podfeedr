@@ -28,15 +28,18 @@ const onSuccess = (res) => {
       heartCount = loved.find(x => x.name === result.collectionName).heartCount;
       heartClasses = 'fas fa-heart heart closed-heart';
     }
-    const temp = `<div class="col-sm-6">
-      <div class="card mb-4 shadow-sm">
+    const temp = `
+    <div class="card-deck col-sm-6">
+      <div class="card border-info mb-4 shadow-sm">
         <img class="result-img" src="${result.artworkUrl600}" />
         <div class="card-body">
-          <p class="card-text podcast-name">${result.collectionName}</p>
+          <p class="card-text podcast-name">${result.collectionName}<br/>
+          <small class="text-muted">${result.artistName}</small>
+          </p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <a href="${result.collectionViewUrl}" target="_blank">
-                <button type="button" class="btn btn-sm btn-outline-secondary">iTunes</button>
+                <button type="button" class="btn btn-sm btn-outline-info">iTunes</button>
               </a>
             </div>
             <div class="heart-container">
@@ -55,12 +58,13 @@ const onSuccess = (res) => {
   });
 };
 
-$('form').on('submit', (e) => {
-  e.preventDefault();
-  let term = $('#search-bar').val();
+$(`.search_input`).on('keyup', () => {
+  let term = $('.search_input').val();
   term = term.replace(' ', '+');
-  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=10&callback=onSuccess`);
-});
+  // if (term.length > 3) {
+    $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=12&callback=onSuccess`);
+  // }
+})
 
 const displayNewHeartCount = (element, op) => {
   // op is 'increase' or 'decrease'

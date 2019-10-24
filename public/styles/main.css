@@ -1,15 +1,19 @@
-.signup-body, .signin-body {
-    background-image: url('/images/podcast-bkgd.png');
-    background-size: cover;
-    background-repeat: no-repeat;
+.bg-dark {
+  background-color: #202326!important;
+  opacity: .8;
+}
 
+/* Sign Up/Sign In */
+.signup-body, .signin-body {
+  background-image: url('/images/podcast-bkgd.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 form {
-    max-width: 600px;
+  max-width: 600px;
 }
-
-/* Sign Up */
 
 body main {
   padding: 0 30px;
@@ -35,8 +39,12 @@ body main {
     margin: 0 auto;
 }
 
+.signinbtn {
+  text-align: center;
+}
+
 #no-account {
-    margin-top: 7px;
+    margin-top: 20px;
     text-align: center;
     padding: 20px 0;
 }
@@ -55,7 +63,35 @@ body main {
     color: #721c24;
 }
 
+.jumbotron {
+  height: 100%;
+}
+
+.signup-btn, .signin-btn {
+  position: relative;
+  top: 20px;
+}
+
+@media (max-width: 576px) {
+  #signin-form {
+    height: 350px;
+  }
+}
+
 /* Search/Feed */
+
+.feed-body, .search-body {
+  /* bkgd img src: https://www.freepik.com/free-photo/elegant-white-background-with-gray-abstract-shapes_5083072.htm */
+  background-image: url('/images/19952.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.search-body h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
 a:hover {
     text-decoration: none;
@@ -102,3 +138,48 @@ a:hover {
 .fa-plus {
     padding-right: 10px;
 }
+
+/* Search Bar */
+/* Source: https://bootsnipp.com/snippets/GaeQR */
+.searchbar{
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 60px;
+  background-color: #353b48;
+  border-radius: 30px;
+  padding: 10px;
+  }
+
+  .search_input{
+  color: white;
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  caret-color:transparent;
+  line-height: 40px;
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_input{
+  padding: 0 10px;
+  width: 450px;
+  caret-color:#17a2b8;
+  transition: width 0.4s linear;
+  }
+
+  .searchbar:hover > .search_icon{
+  background: white;
+  color: #17a2b8;
+  }
+
+  .search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:white;
+  }
