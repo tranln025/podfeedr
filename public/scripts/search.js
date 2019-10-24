@@ -62,12 +62,30 @@ $('form').on('submit', (e) => {
   $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=10&callback=onSuccess`);
 });
 
+const displayNewHeartCount = (element, op) => {
+  // op is 'increase' or 'decrease'
+  const $count = $(element).siblings('.heart-count').eq(0);
+
+  let currentCount = Number($count.text());
+  $count.empty();
+  $count.hide();
+  if (op === 'increase') {
+    currentCount += 1;
+  } else if (op === 'decrease') {
+    currentCount -= 1;
+  }
+  $count.text(`${currentCount}`);
+  $count.slideDown();
+};
+
 $('#results').on('click', '.open-heart', function() {
   $(this).removeClass('open-heart');
   $(this).addClass('closed-heart');
 
   $(this).removeClass('far');
   $(this).addClass('fas');
+
+  displayNewHeartCount(event.target, 'increase');
 
   // ajax call to create new podcast in User document
   $.ajax({
@@ -92,12 +110,14 @@ $('#results').on('click', '.open-heart', function() {
 
 // UPDATE Remove Podcast from User Object and Decrease Heart Count
 
-$('#results').on('click', '.closed-heart', function() {
+$('#results').on('click', '.closed-heart', function(event) {
   $(this).removeClass('closed-heart');
   $(this).addClass('open-heart');
 
   $(this).removeClass('fas');
   $(this).addClass('far');
+
+  displayNewHeartCount(event.target, 'decrease');
 
   $.ajax({
     method: 'PUT',
