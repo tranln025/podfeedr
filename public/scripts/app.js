@@ -16,12 +16,18 @@ form && form.addEventListener('submit', (event) => {
         if (element.value === '') {
             formIsValid = false;
             $(element).addClass('is-invalid');
+            if (element.name === 'password2') {
+                $(element).parent('div').append(`
+                    <div class="invalid-feedback">
+                        Please confirm your password.
+                    </div>
+                `)
+            } else {
             $(element).parent('div').append(`
                 <div class="invalid-feedback">
                     Please enter your ${element.name}.
                 </div>
-            `);
-
+            `)};
         // Form is invalid if password is <4 chars
         } else if (element.type === 'password' && element.value.length < 4) {
             formIsValid = false;
