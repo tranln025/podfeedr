@@ -5,6 +5,7 @@ form && form.addEventListener('submit', (event) => {
     let formIsValid = true;
     const userData = {};
     event.preventDefault();
+    $(`.error-msg`).remove();
 
     // For each input,
     $('input').each((index, element) => {

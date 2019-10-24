@@ -58,12 +58,13 @@ const onSuccess = (res) => {
   });
 };
 
-$('form').on('submit', (e) => {
-  e.preventDefault();
-  let term = $('#search-bar').val();
+$(`.search_input`).on('keyup', () => {
+  let term = $('.search_input').val();
   term = term.replace(' ', '+');
-  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=10&callback=onSuccess`);
-});
+  // if (term.length > 3) {
+    $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=12&callback=onSuccess`);
+  // }
+})
 
 const displayNewHeartCount = (element, op) => {
   // op is 'increase' or 'decrease'
