@@ -5,39 +5,49 @@ form && form.addEventListener('submit', (event) => {
     let formIsValid = true;
     const userData = {};
     event.preventDefault();
+    $('.invalid-feedback').remove();
+    $('input').removeClass('is-invalid');
 
     // For each input,
     $('input').each((index, element) => {
         console.log(element.value);
-        
+
         // Form is invalid if input is empty
         if (element.value === '') {
             formIsValid = false;
-            $(element).addClass('input-error');
+            $(element).addClass('is-invalid');
             $(element).parent('div').append(`
-                <div class="error-msg">
+                <div class="invalid-feedback">
                     Please enter your ${element.name}.
                 </div>
-            `)
+            `);
 
         // Form is invalid if password is <4 chars
         } else if (element.type === 'password' && element.value.length < 4) {
             formIsValid = false;
             console.log(element);
-            $(element).addClass('input-error');
+            $(element).addClass('is-invalid');
             $(element).parent('div').append(`
-                <div class="error-msg">
+                <div class="invalid-feedback">
                     Password must be at least 4 characters.
                 </div>
-            `)
-        };
+            `);
+        } else if (element.type === 'email' && !RegExp('[^@]+@([^@]\.)+([^@]+)').test(element.value)) {
+            formIsValid = false;
+            $(element).addClass('is-invalid');
+            $(element).parent('div').append(`
+                <div class="invalid-feedback">
+                    Please enter a valid email address.
+                </div>
+            `);
+        }
 
         // If all inputs are valid, form is valid and store input values in userData object
         if (formIsValid) {
             userData[element.name] = element.value;
         };
-    });
-    
+
+
 
     // SECTION If signup form is valid & passwords match, store data in database
     if (form.id === 'signup' && formIsValid) {
@@ -45,12 +55,12 @@ form && form.addEventListener('submit', (event) => {
         // Check if passwords match
         if ($(`#password`).val() !== $(`#password2`).val()) {
             if (element.type === "password") {
-                $(element).addClass('input-error');
+                $(element).addClass('is-invalid');
                 $(element).parent('div').append(`
-                    <div class="error-msg">
+                    <div class="invalid-feedback">
                         Passwords do not match.
                     </div>
-                `);    
+                `);
             };
         } else {
             // console.log('userData: ', userData);
@@ -99,4 +109,5 @@ form && form.addEventListener('submit', (event) => {
         })
         .catch(err => console.log(err));
     };
+});
 });
