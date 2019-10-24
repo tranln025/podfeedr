@@ -3,6 +3,17 @@ console.log('search js connected');
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 
+let all;
+
+$.ajax({
+  method: 'GET',
+  url: `http://localhost:4000/api/v1/podcasts/`,
+  success: (res) => {
+    all = res.data;
+  },
+  error: (err) => console.log(err)
+});
+
 let loved;
 
 $.ajax({
@@ -12,10 +23,11 @@ $.ajax({
     loved = res.data;
   },
   error: (err) => console.log(err)
-})
+});
 
 // user submits a search query
 const onSuccess = (res) => {
+  const allNames = all.map(x => x.name);
   const lovedNames = loved.map(x => x.name);
   let heartCount = 0;
   let heartClasses = '';
@@ -24,8 +36,10 @@ const onSuccess = (res) => {
   res.results.forEach((result) => {
     heartCount = 0;
     heartClasses = 'far fa-heart heart open-heart'
+    if (allNames.includes(result.collectionName)) {
+      heartCount = all.find(x => x.name === result.collectionName).heartCount;
+    }
     if (lovedNames.includes(result.collectionName)) {
-      heartCount = loved.find(x => x.name === result.collectionName).heartCount;
       heartClasses = 'fas fa-heart heart closed-heart';
     }
     const temp = `
@@ -36,6 +50,8 @@ const onSuccess = (res) => {
           <p class="card-text podcast-name">${result.collectionName}<br/>
           <small class="text-muted">${result.artistName}</small>
           </p>
+        </div>
+        <div class="card-footer">
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <a href="${result.collectionViewUrl}" target="_blank">

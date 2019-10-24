@@ -40,10 +40,10 @@ form && form.addEventListener('submit', (event) => {
                     Please enter a valid email address.
                 </div>
             `);
-        } else if ($('#password2').length) {
+        } else if (form.id === 'signup') {
             console.log($('#password2').length)
-            formIsValid = false;
             if ($(`#password`).val() !== $(`#password2`).val()) {
+                formIsValid = false;
                 if (element.type === "password") {
                     $(element).addClass('is-invalid');
                     $(element).parent('div').append(`
@@ -59,7 +59,7 @@ form && form.addEventListener('submit', (event) => {
         if (formIsValid) {
             userData[element.name] = element.value;
         };
-    // });
+    });
 
     // SECTION If signup form is valid & passwords match, store data in database
     if (form.id === 'signup' && formIsValid) {
@@ -94,11 +94,13 @@ form && form.addEventListener('submit', (event) => {
         .then(dataStream => dataStream.json())
         .then(res => {
             if (res.status === 400) {
-                $(`#password`).after(`
+                console.log('bad password');
+                $('#password').addClass('is-invalid');
+                $(`#password`).parent('div').append(`
                     <div class="invalid-feedback">
                         Username or password is incorrect. Please try again.
                     </div>
-                `)
+                `);
             }
             if (res.status === 201) {
                 window.sessionStorage.setItem(`userId`, `${res.data.id}`);
@@ -110,4 +112,4 @@ form && form.addEventListener('submit', (event) => {
         .catch(err => console.log(err));
     };
 });
-});
+// });
