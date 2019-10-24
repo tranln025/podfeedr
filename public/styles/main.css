@@ -95,6 +95,10 @@ body main {
   margin-bottom: 30px;
 }
 
+#luckyButton {
+    font-size: 12px;
+}
+
 a:hover {
     text-decoration: none;
 }

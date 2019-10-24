@@ -9,6 +9,8 @@ $('.searchbar').on('mouseover', () => {
 
 $(`.search_input`).on('blur', () => {
   $(`.searchbar`).removeClass('searchbar-hover');
+});
+
 let all;
 
 $.ajax({
@@ -20,6 +22,7 @@ $.ajax({
   error: (err) => console.log(err)
 });
 
+// check user's podcasts to see if user hearted a podcast
 let loved;
 
 $.ajax({
@@ -30,6 +33,7 @@ $.ajax({
   },
   error: (err) => console.log(err)
 });
+
 
 // user submits a search query
 const onSuccess = (res) => {
@@ -54,8 +58,7 @@ const onSuccess = (res) => {
         <img class="result-img" src="${result.artworkUrl600}" />
         <div class="card-body">
           <p class="card-text podcast-name">${result.collectionName}<br/>
-          <small class="text-muted">${result.artistName}</small>
-          </p>
+          <small class="text-muted">${result.artistName}</small></p>
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-between align-items-center">
@@ -79,6 +82,20 @@ const onSuccess = (res) => {
     $searchResults.append(temp);
   });
 };
+
+// i'm feeling lucky
+const chooseRandomSearchChar = () => {
+  // choose random num between 97 and 122 then convert to letter
+  const num = Math.floor(97 + Math.random()*((122 - 97) + 1));
+  const letter = String.fromCharCode(num);
+  return letter;
+};
+
+$('#luckyButton').on('click', () => {
+  let term = chooseRandomSearchChar();
+  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&entity=podcast&limit=12&callback=onSuccess`);
+});
+// ------
 
 $(`.search_input`).on('keyup', () => {
   let term = $('.search_input').val();
