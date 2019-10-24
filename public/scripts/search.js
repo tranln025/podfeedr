@@ -14,16 +14,22 @@ $(`.search_input`).on('blur', () => {
 
 // number of results
 let numResults = 12;
+let lucky;
+let random;
 $('.num-results').on('click', function () {
   $(this).toggleClass('active');
   numResults = Number($(this).attr('id'));
 
   $(this).siblings().removeClass('active');
 
-  let term = $('.search_input').val();
-  if (term.length !== 0) {
-    term = term.replace(' ', '+');
-  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=${numResults}&callback=onSuccess`);
+  if (lucky) {
+    $.getScript(`https://itunes.apple.com/search?term=${random}&media=podcast&limit=${numResults}&callback=onSuccess`);
+  } else {
+    let term = $('.search_input').val();
+    if (term.length !== 0) {
+      term = term.replace(' ', '+');
+      $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=${numResults}&callback=onSuccess`);
+    }
   }
 });
 
@@ -107,12 +113,14 @@ const chooseRandomSearchChar = () => {
 };
 
 $('#luckyButton').on('click', () => {
-  let term = chooseRandomSearchChar();
-  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&entity=podcast&limit=${numResults}&callback=onSuccess`);
+  lucky = true;
+  random = chooseRandomSearchChar();
+  $.getScript(`https://itunes.apple.com/search?term=${random}&media=podcast&entity=podcast&limit=${numResults}&callback=onSuccess`);
 });
 
 // search input
 $(`.search_input`).on('keyup', () => {
+  lucky = false;
   let term = $('.search_input').val();
   term = term.replace(' ', '+');
   $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=${numResults}&callback=onSuccess`);
