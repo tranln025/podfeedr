@@ -14,15 +14,19 @@ const displayFeed = (res) => {
   $results.empty();
   podcasts.forEach((result) => {
     const heartCount = 0;
-    const temp = `<div class="col-sm-6">
-      <div class="card mb-4 shadow-sm">
+    const temp = `
+    <div class="card-deck col-sm-6">
+      <div class="card border-info mb-4 shadow-sm">
         <img class="result-img" src="${result.imageSource}" />
         <div class="card-body">
-          <p class="card-text podcast-name">${result.name}</p>
+          <p class="card-text podcast-name">${result.name}<br/>
+          <small class="text-muted">${result.artist}</small></p>
+        </div>
+        <div class="card-footer">
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <a href="${result.itunesLink}" target="_blank">
-                <button type="button" class="btn btn-sm btn-outline-secondary">iTunes</button>
+                <button type="button" class="btn btn-sm btn-outline-info">iTunes</button>
               </a>
             </div>
             <div class="heart-container">

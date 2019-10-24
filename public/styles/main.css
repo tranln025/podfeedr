@@ -2,11 +2,14 @@
     background-image: url('/images/podcast-bkgd.png');
     background-size: cover;
     background-repeat: no-repeat;
-
 }
 
 form {
     max-width: 600px;
+}
+
+.bg-dark {
+  opacity: .8;
 }
 
 /* Sign Up */
@@ -56,6 +59,14 @@ body main {
 }
 
 /* Search/Feed */
+
+.feed-body, .search-body {
+  /* background-image: url('/images/teal-bkgd.png');*/
+
+  background-image: url('/images/wood.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 a:hover {
     text-decoration: none;

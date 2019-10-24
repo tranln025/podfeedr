@@ -36,26 +36,45 @@ form && form.addEventListener('submit', (event) => {
         if (formIsValid) {
             userData[element.name] = element.value;
         };
-    });
     
 
-    // SECTION If signup form is valid & passwords match, store data in database
-    if (form.id === 'signup' && formIsValid) {
+        // SECTION If signup form is valid & passwords match, store data in database
+        if (form.id === 'signup' && formIsValid) {
 
-        // Check if passwords match
-        if ($(`#password`).val() !== $(`#password2`).val()) {
-            if (element.type === "password") {
-                $(element).addClass('input-error');
-                $(element).parent('div').append(`
-                    <div class="error-msg">
-                        Passwords do not match.
-                    </div>
-                `);    
+            // Check if passwords match
+            if ($(`#password`).val() !== $(`#password2`).val()) {
+                if (element.type === "password") {
+                    $(element).addClass('input-error');
+                    $(element).parent('div').append(`
+                        <div class="error-msg">
+                            Passwords do not match.
+                        </div>
+                    `);    
+                };
+            } else {
+                // console.log('userData: ', userData);
+                fetch('/api/v1/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                })
+                .then(dataStream => dataStream.json())
+                .then(res => {
+                    console.log(res);
+                    if (res.status === 201) return window.location = '/signin';
+                })
+                .catch(err => console.log(err));
             };
-        } else {
-            // console.log('userData: ', userData);
-            fetch('/api/v1/signup', {
+        };
+
+        // SECTION If sign-in form is valid, store data
+        if (form.id === 'signin' && formIsValid) {
+            console.log('Submitting user signin: ', userData);
+            fetch('/api/v1/signin', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -63,40 +82,21 @@ form && form.addEventListener('submit', (event) => {
             })
             .then(dataStream => dataStream.json())
             .then(res => {
-                console.log(res);
-                if (res.status === 201) return window.location = '/signin';
+                if (res.status === 400) {
+                    $(`#password`).after(`
+                        <div class="error-msg">
+                            Username or password is incorrect. Please try again.
+                        </div>
+                    `)
+                }
+                if (res.status === 201) {
+                    window.sessionStorage.setItem(`userId`, `${res.data.id}`);
+                    console.log(res);
+                    window.sessionStorage.setItem(`username`, `${userData.username}`);
+                    return window.location = `/feed/${res.data.id}`
+                };
             })
             .catch(err => console.log(err));
         };
-    };
-
-    // SECTION If sign-in form is valid, store data
-    if (form.id === 'signin' && formIsValid) {
-        console.log('Submitting user signin: ', userData);
-        fetch('/api/v1/signin', {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userData)
-        })
-        .then(dataStream => dataStream.json())
-        .then(res => {
-            if (res.status === 400) {
-                $(`#password`).after(`
-                    <div class="error-msg">
-                        Username or password is incorrect. Please try again.
-                    </div>
-                `)
-            }
-            if (res.status === 201) {
-                window.sessionStorage.setItem(`userId`, `${res.data.id}`);
-                console.log(res);
-                window.sessionStorage.setItem(`username`, `${userData.username}`);
-                return window.location = `/feed/${res.data.id}`
-            };
-        })
-        .catch(err => console.log(err));
-    };
+    });
 });
