@@ -2,6 +2,7 @@ console.log('showfeed');
 
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
+$('.navbar-brand').attr('href', `/feed/${window.sessionStorage.userId}`);
 
 const userId = window.location.pathname.split('/')[2];
 
