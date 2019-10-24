@@ -104,6 +104,23 @@ a:hover {
     text-decoration: none;
 }
 
+.view-number {
+  color: #17a2b8;
+  margin-top: 12px;
+}
+
+.num-results:hover {
+  cursor: pointer;
+}
+
+.num-results i {
+  opacity: 0;
+}
+
+.num-results > .active {
+  opacity: 1;
+}
+
 #results {
   display: flex;
   flex-direction: row;
@@ -207,5 +224,5 @@ a:hover {
     width: 300px;
     caret-color:#17a2b8;
     transition: width 0.4s linear;
-  }  
+  }
 }

@@ -4,6 +4,7 @@ $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 $('.navbar-brand').attr('href', `/feed/${window.sessionStorage.userId}`);
 
+// search bar
 $('.searchbar').on('mouseover', () => {
   $(`.searchbar`).addClass('searchbar-hover');
 });
@@ -12,6 +13,22 @@ $(`.search_input`).on('blur', () => {
   $(`.searchbar`).removeClass('searchbar-hover');
 });
 
+// number of results
+let numResults = 12;
+$('.num-results').on('click', function () {
+  $(this).children('i').toggleClass('active');
+  numResults = Number($(this).attr('id'));
+
+  $(this).siblings().children().removeClass('active');
+
+  let term = $('.search_input').val();
+  if (term.length !== 0) {
+    term = term.replace(' ', '+');
+  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=${numResults}&callback=onSuccess`);
+  }
+});
+
+// get all podcasts to check heart count
 let all;
 
 $.ajax({
@@ -94,7 +111,7 @@ const chooseRandomSearchChar = () => {
 
 $('#luckyButton').on('click', () => {
   let term = chooseRandomSearchChar();
-  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&entity=podcast&limit=12&callback=onSuccess`);
+  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&entity=podcast&limit=${numResults}&callback=onSuccess`);
 });
 // ------
 
@@ -102,7 +119,7 @@ $(`.search_input`).on('keyup', () => {
   let term = $('.search_input').val();
   term = term.replace(' ', '+');
   // if (term.length > 3) {
-    $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=12&callback=onSuccess`);
+    $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=${numResults}&callback=onSuccess`);
   // }
 })
 
