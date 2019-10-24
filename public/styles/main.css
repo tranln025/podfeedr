@@ -90,13 +90,14 @@ body main {
   background-attachment: fixed;
 }
 
-.search-body h1 {
+.search-body {
   text-align: center;
   margin-bottom: 30px;
 }
 
 #luckyButton {
     font-size: 12px;
+    margin: 20px;
 }
 
 a:hover {
