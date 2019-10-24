@@ -82,6 +82,7 @@ body main {
 
 /* Search/Feed */
 
+/* Background img src: https://www.freecreatives.com/backgrounds/white-paper-texture.html */
 .feed-body, .search-body {
   background-image: url('http://images.freecreatives.com/wp-content/uploads/2015/04/white-linen-background.jpg');
   background-size: cover;
@@ -160,14 +161,6 @@ a:hover {
   line-height: 40px;
   transition: width 0.4s linear;
 }
-
-/* 
-.searchbar:hover > .search_input{
-  padding: 0 10px;
-  width: 450px;
-  caret-color:#17a2b8;
-  transition: width 0.4s linear;
-} */
 
 .searchbar-hover > .search_input{
   padding: 0 10px;
