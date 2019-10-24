@@ -5,6 +5,7 @@ form && form.addEventListener('submit', (event) => {
     let formIsValid = true;
     const userData = {};
     event.preventDefault();
+    $(`.error-msg`).remove();
 
     // For each input,
     $('input').each((index, element) => {
@@ -37,16 +38,15 @@ form && form.addEventListener('submit', (event) => {
             userData[element.name] = element.value;
         };
     });
-    
 
     // SECTION If signup form is valid & passwords match, store data in database
     if (form.id === 'signup' && formIsValid) {
 
         // Check if passwords match
         if ($(`#password`).val() !== $(`#password2`).val()) {
-            if (element.type === "password") {
-                $(element).addClass('input-error');
-                $(element).parent('div').append(`
+            if (input.type === "password") {
+                $(input).addClass('input-error');
+                $(input).parent('div').append(`
                     <div class="error-msg">
                         Passwords do not match.
                     </div>
@@ -69,6 +69,7 @@ form && form.addEventListener('submit', (event) => {
             .catch(err => console.log(err));
         };
     };
+
 
     // SECTION If sign-in form is valid, store data
     if (form.id === 'signin' && formIsValid) {

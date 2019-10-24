@@ -19,9 +19,13 @@ router.delete('/signout', ctlr.auth.deleteSession);
 router.get('/podcasts', (req, res) => {
   db.Podcast.find({}, (err, allPodcasts) => {
     if (err) return console.log(err)
-    res.json(allPodcasts);
+    res.json({
+      status: 200,
+      count: allPodcasts.length,
+      data: allPodcasts
+    });
   });
-});
+})
 
 router.post('/podcasts/:id', (req, res) => {
   db.Podcast.findOne({itunesLink: req.body.itunesLink}, (err, existingPodcast) => {
@@ -103,5 +107,14 @@ router.put('/podcasts/:userId', (req, res) => {
       });
     });
 });
+
+// router.delete('/podcasts', (req, res) => {
+//   db.Podcast.deleteMany({}, (err, deletedPodcasts) => {
+//     if (err) return console.log(err);
+//     res.json({
+//       status: 200,
+//     })
+//   })
+// })
 
 module.exports = router;

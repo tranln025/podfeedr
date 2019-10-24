@@ -85,11 +85,11 @@ const deleteAllUsers = (req, res) => {
 
 // SECTION POST Login
 const createSession = (req, res) => {
-    // console.log('Request session object --> ', req.session)
     db.User.findOne({ username: req.body.username }, (err, foundUser) => {
         if (err) return res.status(500).json({ 
             status: 500,
             error: [{ message: 'Something went wrong with creating the session. Please try again.' }],
+            errorMessage: err
         });
 
         // If no user is found by email address, return error message
