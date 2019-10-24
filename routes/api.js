@@ -9,8 +9,8 @@ const db = require('../models');
 // --------------------------------------------- AUTH --------------------------------------------- //
 
 router.post('/signup', ctlr.auth.createUser);
-router.get('/signup', ctlr.auth.viewAllUsers)
-router.delete('/signup', ctlr.auth.deleteAllUsers)
+router.get('/signup', ctlr.auth.viewAllUsers);
+router.delete('/signup', ctlr.auth.deleteAllUsers);
 router.post('/signin', ctlr.auth.createSession);
 router.delete('/signout', ctlr.auth.deleteSession);
 
@@ -25,7 +25,7 @@ router.get('/podcasts', (req, res) => {
       data: allPodcasts
     });
   });
-})
+});
 
 router.post('/podcasts/:id', (req, res) => {
   db.Podcast.findOne({itunesLink: req.body.itunesLink}, (err, existingPodcast) => {
@@ -69,8 +69,8 @@ router.post('/podcasts/:id', (req, res) => {
             });
         });
       });
-    }
-  })
+    };
+  });
 });
 
 router.get('/podcasts/:id', (req, res) => {
@@ -108,13 +108,14 @@ router.put('/podcasts/:userId', (req, res) => {
     });
 });
 
-// router.delete('/podcasts', (req, res) => {
-//   db.Podcast.deleteMany({}, (err, deletedPodcasts) => {
-//     if (err) return console.log(err);
-//     res.json({
-//       status: 200,
-//     })
-//   })
-// })
+// FOR TESTING: Delete all podcasts
+router.delete('/podcasts', (req, res) => {
+  db.Podcast.deleteMany({}, (err, deletedPodcasts) => {
+    if (err) return console.log(err);
+    res.json({
+      status: 200,
+    })
+  })
+})
 
 module.exports = router;
