@@ -112,19 +112,34 @@ a:hover {
 
 .view-number {
   color: #17a2b8;
-  margin-top: 12px;
+  margin-top: 20px;
+}
+
+.num-results-desc {
+  font-size: 17px;
+  margin-right: 15px;
+}
+
+.num-results {
+  color: #17a2b8;
+  background: transparent;
+  display: inline-block;
+  border: 1px solid #17a2b8;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 46px;
+  padding: 0px 10px;
 }
 
 .num-results:hover {
   cursor: pointer;
+  background: #17a2b8;
+  color: #ffffff;
 }
 
-.num-results i {
-  opacity: 0;
-}
-
-.num-results > .active {
-  opacity: 1;
+.active {
+  background: #17a2b8;
+  color: #ffffff;
 }
 
 #results {

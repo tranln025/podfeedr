@@ -15,10 +15,10 @@ $(`.search_input`).on('blur', () => {
 // number of results
 let numResults = 12;
 $('.num-results').on('click', function () {
-  $(this).children('i').toggleClass('active');
+  $(this).toggleClass('active');
   numResults = Number($(this).attr('id'));
 
-  $(this).siblings().children().removeClass('active');
+  $(this).siblings().removeClass('active');
 
   let term = $('.search_input').val();
   if (term.length !== 0) {
