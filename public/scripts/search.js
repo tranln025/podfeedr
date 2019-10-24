@@ -1,5 +1,4 @@
-console.log('search js connected');
-
+// set dynamic links
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
 $('.navbar-brand').attr('href', `/feed/${window.sessionStorage.userId}`);
@@ -52,18 +51,15 @@ $.ajax({
   error: (err) => console.log(err)
 });
 
-
 // user submits a search query
 const onSuccess = (res) => {
   const allNames = all.map(x => x.name);
   const lovedNames = loved.map(x => x.name);
-  let heartCount = 0;
-  let heartClasses = '';
   const $searchResults = $('#results');
   $searchResults.empty();
   res.results.forEach((result) => {
-    heartCount = 0;
-    heartClasses = 'far fa-heart heart open-heart'
+    let heartCount = 0;
+    let heartClasses = 'far fa-heart heart open-heart'
     if (allNames.includes(result.collectionName)) {
       heartCount = all.find(x => x.name === result.collectionName).heartCount;
     }
@@ -103,7 +99,8 @@ const onSuccess = (res) => {
 
 // i'm feeling lucky
 const chooseRandomSearchChar = () => {
-  // choose random num between 97 and 122 then convert to letter
+  /* choose random num between 97 and 122
+     then convert to letter */
   const num = Math.floor(97 + Math.random()*((122 - 97) + 1));
   const letter = String.fromCharCode(num);
   return letter;
@@ -113,18 +110,17 @@ $('#luckyButton').on('click', () => {
   let term = chooseRandomSearchChar();
   $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&entity=podcast&limit=${numResults}&callback=onSuccess`);
 });
-// ------
 
+// search input
 $(`.search_input`).on('keyup', () => {
   let term = $('.search_input').val();
   term = term.replace(' ', '+');
-  // if (term.length > 3) {
-    $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=${numResults}&callback=onSuccess`);
-  // }
+  $.getScript(`https://itunes.apple.com/search?term=${term}&media=podcast&limit=${numResults}&callback=onSuccess`);
 })
 
+// heart count
 const displayNewHeartCount = (element, op) => {
-  // op is 'increase' or 'decrease'
+  /* op is 'increase' or 'decrease' */
   const $count = $(element).siblings('.heart-count').eq(0);
 
   let currentCount = Number($count.text());
@@ -159,8 +155,6 @@ $('#results').on('click', '.open-heart', function() {
       imageSource: $(this).data('image-source'),
     },
     success: (req)=>{
-      console.log($(this).data('name'));
-      console.log(`window stored Id: ${window.sessionStorage.userId}`)
       console.log('success');
     },
     error: (err) => {
@@ -169,8 +163,7 @@ $('#results').on('click', '.open-heart', function() {
   });
 });
 
-// UPDATE Remove Podcast from User Object and Decrease Heart Count
-
+// remove podcast from User and decrease heart count
 $('#results').on('click', '.closed-heart', function(event) {
   $(this).removeClass('closed-heart');
   $(this).addClass('open-heart');
@@ -198,7 +191,7 @@ $('#results').on('click', '.closed-heart', function(event) {
   })
 });
 
-// Sign Out
+// sign out
 $(`.signout`).on('click', (event) => {
   event.preventDefault();
   fetch('/api/v1/signout', {
