@@ -1,4 +1,5 @@
-# podcast-app
+# Podfeedr
+We designed this app to store a list of all of your favorite podcasts in one place. You can search for podcasts by title or artist, view a list size of your choosing that matches your query, and “love” podcasts to add them to your personal private feed. 
 
 ## Technologies Used
 iTunes external API  
