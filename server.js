@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const app = express();
-const PORT = process.env.PORT || 4000;
+require('dotenv').config();
+
+const PORT = process.env.PORT;
 
 // Routes
 const routes = require('./routes');

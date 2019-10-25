@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Main CSS -->
     <link rel="stylesheet" href="/styles/main.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/8f0079a728.js" crossorigin="anonymous" defer></script>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- Main JS -->
@@ -16,55 +18,88 @@
 </head>
 <body class="signup-body">
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4 shadow">
-        <a class="navbar-brand" href="/signup">Podfeedr</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav ml-auto mr-4">
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span id="username-nav-link">&langle;Username&rangle;</span>
-                    </a>
-                </li> -->
-            </ul>
-            <a href="/signin"><button class="btn btn-outline-info my-2 my-sm-0 ml-auto signin">Sign In</button></a>
-        </div>
-    </nav>
-
-    <main class="row">
-        <section class="col-lg hook">
-            <h1 class="title-text">Podfeedr.</h1>
-            <h3>The ultimate source for your favorite podcasts.</h3>
-        </section>
-
-        <section class="col-lg container" id="form-container">
-            <div class="jumbotron">
-                <h1>Sign Up</h1>
-                <form id="signup" class="needs-validation" novalidate>
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="username" name="username" class="form-control" id="username" placeholder="Enter username">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label for="password2">Confirm Password</label>
-                        <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm Password">
-                    </div>
-                    <button class="signup-btn btn btn-info float-right" type="submit" class="btn btn-primary">Submit</button>
-                </form>
+    <div class="nav-and-main">
+        <nav class="navbar navbar-expand navbar-dark bg-dark mb-4 shadow">
+            <a class="navbar-brand" href="/signup">Podfeedr</a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto mr-4">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span id="username-nav-link">&langle;Username&rangle;</span>
+                        </a>
+                    </li> -->
+                </ul>
+                <a href="/signin"><button class="btn btn-outline-info my-2 my-sm-0 ml-auto signin">Sign In</button></a>
             </div>
-        </section>
-    </main>
+        </nav>
+
+        <main class="row">
+            <section class="col-lg hook">
+                <h1 class="title-text">Podfeedr.</h1>
+                <h3>The ultimate source for your favorite podcasts.</h3>
+            </section>
+
+            <section class="col-lg container" id="form-container">
+                <div class="jumbotron">
+                    <h1>Sign Up</h1>
+                    <form id="signup" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="username" name="username" class="form-control" id="username" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="password2">Confirm Password</label>
+                            <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm Password">
+                        </div>
+                        <button class="signup-btn btn btn-info float-right" type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="page-footer font-small teal pt-4">
+        <div class="container-fluid text-center text-md-left">
+            <h4 class="about-us">About The Devs</h4>
+            <div class="devs row">
+                <div class="dev col mt-md-0 mt-3">
+                    <div class="dev2 row">
+                        <div class="portrait col"><img src="/images/lindsey.jpg" alt="Lindsey"></div>
+                        <div class="portrait-desc col">
+                            <h5 class="text-uppercase font-weight-bold">Lindsey Hiltner</h5>
+                            <p>When she’s not making kickass websites, Lindsey enjoys exploring the great outdoors, reading, making new recipes, and of course, indulging in her favorite podcasts - Judge John Hodgman and the Adventure Zone.</p>
+                            <a href="https://www.linkedin.com/in/lindsey-hiltner/" class="btn-floating btn-li mx-1">
+                                <i class="fab fa-linkedin fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="clearfix w-100 d-md-none pb-3">
+                <div class="dev col mb-md-0 mb-3">
+                    <div class="dev2 row">
+                        <div class="portrait col"><img src="/images/linh.jpg" alt="Linh"></div>
+                        <div class="portrait-desc col">
+                            <h5 class="text-uppercase font-weight-bold">Linh Tran</h5>
+                            <p>When Linh isn't designing moody websites, you can find her petting dogs on their walks, scrolling on her phone through endless cat images, and listening to podcasts like "Stuff You Should Know" and various murder mystery podcasts.</p>
+                            <a href="https://www.linkedin.com/in/linhntran/" class="btn-floating btn-li mx-1">
+                                <i class="fab fa-linkedin fa-2x"> </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright py-3">© 2019 L Squad</div>
+    </footer>
 
 
     <!-- Boostrap JS -->

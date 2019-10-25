@@ -20,8 +20,8 @@
   <title>Search | Podfeedr</title>
 </head>
 <body class="search-body">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4 shadow">
-        <a class="navbar-brand" href="/signup">Podfeedr</a>
+    <nav class="navbar navbar-expand navbar-dark bg-dark mb-4 shadow">
+        <a class="navbar-brand">Podfeedr</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,15 +38,22 @@
     </nav>
   <main>
     <h1>Search for podcasts</h1>
-    <button type="text" id="luckyButton" class="btn btn-outline-info">I'm feeling lucky</button>
+    <button type="text" id="luckyButton" class="btn btn-outline-info" title="Exhausted all your favorite podcasts? Click here to expand your horizons!">I'm feeling lucky</button>
     <!-- Search bar source: https://bootsnipp.com/snippets/GaeQR -->
     <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
           <div class="searchbar" >
-            <input class="search_input" type="text" name="" placeholder="What podcast are you searching for?">
+            <input class="search_input" type="text" name="" placeholder="Find a podcast">
             <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
           </div>
         </div>
+        <div class="view-number">
+            <p><span class="num-results-desc">Number of results:</span>
+              <span id="6" class="num-results">6</span>
+              <span id="12" class="num-results active">12</span>
+              <span id="18" class="num-results">18</span>
+            </p>
+          </div>
       </div>
     <div class="album py-5 container">
       <div id="results">

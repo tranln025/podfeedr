@@ -1,19 +1,16 @@
-console.log('showfeed');
-
+// set dynamic links
 $(`#username-nav-link`).text(`${window.sessionStorage.username}`);
 $('#username-nav-link').parent().attr('href', `/feed/${window.sessionStorage.userId}`);
+$('.navbar-brand').attr('href', `/feed/${window.sessionStorage.userId}`);
 
 const userId = window.location.pathname.split('/')[2];
 
 // GET Display Feed
-
 const displayFeed = (res) => {
   const podcasts = res.data;
-  // console.log(podcasts);
   const $results = $('#results');
   $results.empty();
   podcasts.forEach((result) => {
-    const heartCount = 0;
     const temp = `
     <div class="card-deck col-sm-6">
       <div class="card border-info mb-4 shadow-sm">
@@ -53,9 +50,7 @@ $('document').ready(
   })
 );
 
-
 // UPDATE Remove Podcast from User Object
-
 $('#results').on('click', '.closed-heart', function() {
   $(this).removeClass('closed-heart');
   $(this).addClass('open-heart');
@@ -81,7 +76,6 @@ $('#results').on('click', '.closed-heart', function() {
     }
   });
 });
-
 
 // Sign Out
 $(`.signout`).on('click', (event) => {
