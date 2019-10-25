@@ -23,6 +23,9 @@ router.get('/signin', (req, res) => {
     });
 });
 
+
+// ---------------------------------------------------- SEARCH
+
 // GET Search
 router.get('/search', (req, res) => {
     res.sendFile('views/search.html', {
