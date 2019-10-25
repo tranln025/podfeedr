@@ -15,43 +15,45 @@
     <title>Sign In | Podfeedr</title>
 </head>
 <body class="signin-body">
-    <nav class="navbar navbar-expand navbar-dark bg-dark mb-4 shadow">
-        <a class="navbar-brand" href="/signup">Podfeedr</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav ml-auto mr-4">
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <span id="username-nav-link">&langle;Username&rangle;</span>
-                    </a>
-                </li> -->
-            </ul>
-            <a href="/signup"><button class="btn btn-outline-info my-2 my-sm-0 ml-auto">Sign Up</button></a>
-        </div>
-    </nav>
-    <main>
-        <div class="jumbotron" id="signin-form">
-            <h1>Sign In</h1>
-            <form id="signin">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="username" name="username" class="form-control" id="username" placeholder="Enter username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-                </div>
-                <div class="signinbtn">
-                    <button class="signin-btn btn btn-info" type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>
-        <div class="jumbotron" id="no-account">
-            <p>Don't have an account? <a href="/signup">Sign up</a></p>
-        </div>
-    </main>
+    <div class="nav-and-main">
+        <nav class="navbar navbar-expand navbar-dark bg-dark mb-4 shadow">
+            <a class="navbar-brand" href="/signup">Podfeedr</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto mr-4">
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span id="username-nav-link">&langle;Username&rangle;</span>
+                        </a>
+                    </li> -->
+                </ul>
+                <a href="/signup"><button class="btn btn-outline-info my-2 my-sm-0 ml-auto">Sign Up</button></a>
+            </div>
+        </nav>
+        <main>
+            <div class="jumbotron" id="signin-form">
+                <h1>Sign In</h1>
+                <form id="signin">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="username" name="username" class="form-control" id="username" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="signinbtn">
+                        <button class="signin-btn btn btn-info" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="jumbotron" id="no-account">
+                <p>Don't have an account? <a href="/signup">Sign up</a></p>
+            </div>
+        </main>
+    </div>
 
 
     <!-- Boostrap JS -->
