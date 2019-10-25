@@ -16,5 +16,4 @@ mongoose.connect(DB_URI, {
 module.exports = {
   User: require('./User'),
   Podcast: require('./Podcast'),
-  Review: require('./Review'),
 };
