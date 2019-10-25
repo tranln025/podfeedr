@@ -31,6 +31,10 @@ h1, h2, h3, h4, h5, h6 {
   background-attachment: fixed;
 }
 
+/* .nav-and-main {
+  height: 100vh;
+} */
+
 form {
   max-width: 600px;
 }
@@ -196,24 +200,69 @@ a:hover {
   color:white;
 }
 
+/* Footer */
+footer {
+  background-color: #212529;
+  color: white;
+}
+
+.about-us {
+  text-align: center;
+}
+
+.portrait {
+  display: inline-block;
+  padding: 0;
+  max-width: 169px;
+}
+
+.portrait-desc {
+  display: inline-block;
+}
+
+.devs {
+  padding: 10px 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.footer-copyright {
+  text-align: center;
+}
+
 /* Responsive */
+@media (min-width: 991.98px) {
+  .nav-and-main {
+    height: 100vh;
+  }
+}
+
 @media (max-width: 991.98px) {
   .hook {
     margin: 50px auto 50px auto;
+  }
+
+  footer {
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 950px) {
+  .dev {
+    min-width: 397.5px;
   }
 }
 
 @media (max-width: 768px) {
   .favorites-top {
     text-align: center;
+    flex-direction: column;
   }
 
   .border-info {
     right: 0;
-  }
-  
-  .favorites-top {
-    flex-direction: column;
   }
 
   .favorites-top .card {
@@ -222,6 +271,10 @@ a:hover {
 
   .favorites-heading {
     margin: 30px 0;
+  }
+
+  .text-center {
+    text-align: left !important;
   }
 }
 
@@ -236,4 +289,8 @@ a:hover {
     caret-color:#17a2b8;
     transition: width 0.4s linear;
   }  
+
+  .devs {
+    text-align: center;
+  }
 }
