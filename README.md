@@ -29,6 +29,11 @@ Heroku
 
 ---
 
+## Wireframes
+![wireframe](https://imgur.com/a/fWhVWZB)
+
+---
+
 ##### Screenshot(s) (optional)
 
 
