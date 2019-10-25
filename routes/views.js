@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const ctlr = require('./../controllers');
 
-// ---------------------------------------------------- AUTH
 
 // GET Index Page (leads to signup)
 router.get('/', (req, res) => {
     res.sendFile('views/auth/signup.html', {
         root: `${__dirname}/../`
     })
-})
+});
 
 // GET Landing Page/Signup
 router.get('/signup', (req, res) => {
@@ -32,9 +30,6 @@ router.get('/search', (req, res) => {
     });
 });
 
-
-// ---------------------------------------------------- FEED
-
 // GET User Feed
 router.get('/feed/:userId', (req, res) => {
     if (!req.session.currentUser) {
@@ -45,8 +40,5 @@ router.get('/feed/:userId', (req, res) => {
       root: `${__dirname}/../`
     });
 });
-
-
-
 
 module.exports = router;
