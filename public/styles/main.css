@@ -180,10 +180,25 @@ a:hover {
     flex-wrap: wrap;
     align-items: center;
     margin-bottom: 20px;
+    padding: 0 5%;
 }
 
 .fa-plus {
     padding-right: 10px;
+}
+
+.to-top {
+  transition: all .25s ease-in-out;
+  position: fixed;
+  bottom: 5%;
+  right: -2%;
+  cursor: pointer;
+  margin: 0 3em 3em 0;
+  padding: .25em;
+}
+
+.fa-arrow-alt-circle-up {
+  color: #17a2b8;
 }
 
 /* Search Bar */
