@@ -30,7 +30,7 @@ Heroku
 ---
 
 ## Wireframes
-![wireframe](https://imgur.com/a/fWhVWZB)
+![wireframe](https://i.imgur.com/OlfNDIu.png)
 
 ---
 
