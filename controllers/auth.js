@@ -34,14 +34,14 @@ const createUser = (req, res) => {
         bcrypt.genSalt(10, (err, salt) => {
             if (err) return res.status(500).json({ 
                 status: 500,
-                error: [{ message: 'Something went wrong with making the salt. Please try again.' }],
+                error: [{ message: 'Something went wrong. Please try again.' }],
             });
 
             // Bcrypt takes in a password and salt
             bcrypt.hash(req.body.password, salt, (err, hash) => {
                 if (err) return res.status(500).json({ 
                     status: 500,
-                    error: [{ message: 'Something went wrong with salting the hash. Please try again.' }],
+                    error: [{ message: 'Something went wrong. Please try again.' }],
                 });
 
                 const newUser = {
@@ -55,7 +55,7 @@ const createUser = (req, res) => {
                 db.User.create(newUser, (err, createdUser) => {
                     if (err) return res.status(500).json({ 
                         status: 500,
-                        error: [{ message: 'Something went wrong with creating the user. Please try again.' }],
+                        error: [{ message: 'Something went wrong. Please try again.' }],
                         errorMessage: err
                     });
 
@@ -88,7 +88,7 @@ const createSession = (req, res) => {
     db.User.findOne({ username: req.body.username }, (err, foundUser) => {
         if (err) return res.status(500).json({ 
             status: 500,
-            error: [{ message: 'Something went wrong with creating the session. Please try again.' }],
+            error: [{ message: 'Something went wrong. Please try again.' }],
             errorMessage: err
         });
 
