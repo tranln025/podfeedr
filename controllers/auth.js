@@ -12,19 +12,18 @@ const viewAllUsers = (req, res) => {
             count: allUsers.length,
             data: allUsers,
             requestedAt: new Date().toLocaleString()
-        })
-    })
-}
+        });
+    });
+};
 
 // SECTION POST Create User
 const createUser = (req, res) => {
-    // console.log('create user route');
     db.User.findOne({ email: req.body.email }, (err, foundUser) => {
-        if (err) return res.status(500).json({ 
+        if (err) return res.status(500).json({
             status: 500,
             error: [{ message: 'Something went wrong. Please try again.' }],
         });
-    
+
         if (foundUser) return res.status(400).json({
             status: 400,
             error: [{ message: 'Invalid request. Please try again.' }],
@@ -32,14 +31,14 @@ const createUser = (req, res) => {
 
         // New salt
         bcrypt.genSalt(10, (err, salt) => {
-            if (err) return res.status(500).json({ 
+            if (err) return res.status(500).json({
                 status: 500,
                 error: [{ message: 'Something went wrong. Please try again.' }],
             });
 
             // Bcrypt takes in a password and salt
             bcrypt.hash(req.body.password, salt, (err, hash) => {
-                if (err) return res.status(500).json({ 
+                if (err) return res.status(500).json({
                     status: 500,
                     error: [{ message: 'Something went wrong. Please try again.' }],
                 });
@@ -53,7 +52,7 @@ const createUser = (req, res) => {
                 console.log(newUser);
 
                 db.User.create(newUser, (err, createdUser) => {
-                    if (err) return res.status(500).json({ 
+                    if (err) return res.status(500).json({
                         status: 500,
                         error: [{ message: 'Something went wrong. Please try again.' }],
                         errorMessage: err
@@ -82,11 +81,10 @@ const deleteAllUsers = (req, res) => {
     });
 };
 
-
 // SECTION POST Login
 const createSession = (req, res) => {
     db.User.findOne({ username: req.body.username }, (err, foundUser) => {
-        if (err) return res.status(500).json({ 
+        if (err) return res.status(500).json({
             status: 500,
             error: [{ message: 'Something went wrong. Please try again.' }],
             errorMessage: err
@@ -101,7 +99,7 @@ const createSession = (req, res) => {
         // If user email is found, verify password
         // bcrypt.compare() takes in plaintext password, hash password, and cb function (err, isMatch) by convention
         bcrypt.compare(req.body.password, foundUser.password, (err, isMatch) => {
-            if (err) return res.status(500).json({ 
+            if (err) return res.status(500).json({
                 status: 500,
                 error: [{ message: 'Something went wrong. Please try again.' }],
             });
@@ -122,14 +120,13 @@ const createSession = (req, res) => {
     });
 };
 
-
 // SECTION DELETE Logout
 const deleteSession = (req, res) => {
     req.session.destroy(err => {
         if (err) return res.status(500).json({
             status: 500,
             errors: [{ message: 'Something went wrong. Please try again' }]});
-  
+
         res.status(200).json({
             status: 200,
             message: 'Success',
@@ -145,5 +142,3 @@ module.exports = {
     deleteSession,
     deleteAllUsers
 };
-
-// TODO Change error messages to be vague once all troubleshooting is done

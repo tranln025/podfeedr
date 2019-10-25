@@ -38,7 +38,7 @@ let all;
 
 $.ajax({
   method: 'GET',
-  url: `http://localhost:4000/api/v1/podcasts/`,
+  url: `/api/v1/podcasts/`,
   success: (res) => {
     all = res.data;
   },
@@ -50,7 +50,7 @@ let loved;
 
 $.ajax({
   method: 'GET',
-  url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
+  url: `/api/v1/podcasts/${window.sessionStorage.userId}`,
   success: (res) => {
     loved = res.data;
   },
@@ -155,7 +155,7 @@ $('#results').on('click', '.open-heart', function() {
   // ajax call to create new podcast in User document
   $.ajax({
     method: 'POST',
-    url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
+    url: `/api/v1/podcasts/${window.sessionStorage.userId}`,
     data: {
       name: $(this).data('name'),
       artist: $(this).data('artist'),
@@ -183,7 +183,7 @@ $('#results').on('click', '.closed-heart', function(event) {
 
   $.ajax({
     method: 'PUT',
-    url: `http://localhost:4000/api/v1/podcasts/${window.sessionStorage.userId}`,
+    url: `/api/v1/podcasts/${window.sessionStorage.userId}`,
     data: {
       name: $(this).data('name'),
       artist: $(this).data('artist'),
