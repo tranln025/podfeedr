@@ -4,11 +4,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Hind Madurai', sans-serif;
 }
 
-.bg-dark {
-  background-color: #202326!important;
-  opacity: .8;
-}
-
 .navbar-toggler {
   display: none;
 }
@@ -28,6 +23,11 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.signup-body .bg-dark, .signin-body .bg-dark {
+  background-color: #202326!important;
+  opacity: .8;
 }
 
 form {
@@ -93,6 +93,10 @@ body main {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.feed-body .bg-dark, .search-body .bg-dark {
+  opacity: 1;
 }
 
 .search-body {
@@ -266,6 +270,10 @@ footer p {
 
 .footer-copyright {
   text-align: center;
+}
+
+.fa-linkedin {
+  color: #2867B2;
 }
 
 /* Responsive */
