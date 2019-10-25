@@ -45,7 +45,7 @@ const displayFeed = (res) => {
 $('document').ready(
   $.ajax({
     method: 'GET',
-    url: `http://localhost:4000/api/v1/podcasts/${userId}`,
+    url: `/api/v1/podcasts/${userId}`,
     success: displayFeed,
   })
 );
@@ -60,7 +60,7 @@ $('#results').on('click', '.closed-heart', function() {
 
   $.ajax({
     method: 'PUT',
-    url: `http://localhost:4000/api/v1/podcasts/${userId}`,
+    url: `/api/v1/podcasts/${userId}`,
     data: {
       name: $(this).data('name'),
       artist: $(this).data('artist'),
