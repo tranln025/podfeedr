@@ -116,6 +116,6 @@ router.delete('/podcasts', (req, res) => {
       status: 200,
     })
   })
-})
+});
 
 module.exports = router;
