@@ -4,9 +4,7 @@ const router = express.Router();
 
 // GET Index Page (leads to signup)
 router.get('/', (req, res) => {
-    res.sendFile('views/auth/signup.html', {
-        root: `${__dirname}/../`
-    })
+    res.redirect('/signup');
 });
 
 // GET Landing Page/Signup
