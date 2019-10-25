@@ -29,6 +29,7 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 /* .nav-and-main {
@@ -324,7 +325,7 @@ footer {
     width: 250px;
     caret-color:#17a2b8;
     transition: width 0.4s linear;
-  }  
+  }
 
   .devs {
     text-align: center;
