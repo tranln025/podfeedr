@@ -11,12 +11,11 @@ const podcastSchema = new Schema({
     type: String,
     default: 'No artist found',
   },
-  itunesLink: String,
-  imageSource: String,
-  reviews: {
-    type: Schema.Types.ObjectId,
-    ref: 'Review',
+  itunesLink: {
+    type: String,
+    unique: true,
   },
+  imageSource: String,
   heartCount: {
     type: Number,
     default: 0,

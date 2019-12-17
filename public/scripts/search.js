@@ -33,9 +33,13 @@ $('.num-results').on('click', function () {
   }
 });
 
-// get all podcasts to check heart count
-let all;
+// Instead of initializing variables everywhere, create central location for global variables
+const state = {
+  all: [],
+  loved:[]
+}
 
+// get all podcasts to check heart count
 $.ajax({
   method: 'GET',
   url: `/api/v1/podcasts/`,
@@ -46,8 +50,6 @@ $.ajax({
 });
 
 // check user's podcasts to see if user hearted a podcast
-let loved;
-
 $.ajax({
   method: 'GET',
   url: `/api/v1/podcasts/${window.sessionStorage.userId}`,
@@ -59,15 +61,15 @@ $.ajax({
 
 // user submits a search query
 const onSuccess = (res) => {
-  const allNames = all.map(x => x.name);
-  const lovedNames = loved.map(x => x.name);
+  const allNames = state.all.map(x => x.name);
+  const lovedNames = state.loved.map(x => x.name);
   const $searchResults = $('#results');
   $searchResults.empty();
   res.results.forEach((result) => {
     let heartCount = 0;
     let heartClasses = 'far fa-heart heart open-heart'
     if (allNames.includes(result.collectionName)) {
-      heartCount = all.find(x => x.name === result.collectionName).heartCount;
+      heartCount = state.all.find(x => x.name === result.collectionName).heartCount;
     }
     if (lovedNames.includes(result.collectionName)) {
       heartClasses = 'fas fa-heart heart closed-heart';

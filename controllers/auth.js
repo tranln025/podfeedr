@@ -49,7 +49,7 @@ const createUser = (req, res) => {
                     password: hash,
                     podcasts: []
                 };
-                console.log(newUser);
+                // console.log(newUser);
 
                 db.User.create(newUser, (err, createdUser) => {
                     if (err) return res.status(500).json({
@@ -61,6 +61,7 @@ const createUser = (req, res) => {
                     res.status(201).json({
                         status: 201,
                     });
+                    // res.redirect instead of status
                 });
             });
         });

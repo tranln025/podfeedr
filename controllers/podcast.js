@@ -4,6 +4,7 @@ const db = require('../models');
 const showAll = (req, res) => {
   db.Podcast.find({}, (err, allPodcasts) => {
     if (err) return console.log(err)
+    // TODO send msg on client side
     res.json({
       status: 200,
       count: allPodcasts.length,
@@ -99,7 +100,7 @@ const removeFromUser = (req, res) => {
         res.sendStatus(200);
       });
       db.Podcast.findOne({name: req.body.name}, (err, foundPodcast) => {
-        console.log(foundPodcast);
+        // console.log(foundPodcast);
         foundPodcast.heartCount --;
         foundPodcast.save((err, updated) => {
           if (err) return console.log(err);

@@ -322,12 +322,6 @@ footer h5 {
   }
 }
 
-@media (max-width: 950px) {
-  .dev {
-    min-width: 397.5px;
-  }
-}
-
 @media (max-width: 768px) {
   .favorites-top {
     text-align: center;
@@ -382,4 +376,12 @@ footer h5 {
     caret-color:#17a2b8;
     transition: width 0.4s linear;
   }
+
+  footer p {
+    padding: 0;
+  }
+
+  /* .dev {
+    max-width: 100vw;
+  } */
 }

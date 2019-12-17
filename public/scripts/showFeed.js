@@ -6,15 +6,16 @@ $('.navbar-brand').attr('href', `/feed/${window.sessionStorage.userId}`);
 const userId = window.location.pathname.split('/')[2];
 
 // GET Display Feed
-const displayFeed = (res) => {
-  const podcasts = res.data;
+const displayFeed = ({data}) => {
+  const podcasts = data;
   const $results = $('#results');
   $results.empty();
   podcasts.forEach((result) => {
+    const { imageSource } = result;
     const temp = `
     <div class="card-deck col-sm-6">
       <div class="card border-info mb-4 shadow-sm">
-        <img class="result-img" src="${result.imageSource}" />
+        <img class="result-img" src="${imageSource}" />
         <div class="card-body">
           <p class="card-text podcast-name">${result.name}<br/>
           <small class="text-muted">${result.artist}</small></p>
@@ -69,7 +70,7 @@ $('#results').on('click', '.closed-heart', function() {
     },
     success: (res) => {
       $(this).parents('div.col-sm-6').remove();
-      console.log('successfully removed')
+      // console.log('successfully removed')
     },
     error: (err) => {
       console.log(err);

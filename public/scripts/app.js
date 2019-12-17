@@ -76,6 +76,7 @@ form && form.addEventListener('submit', (event) => {
         .then(dataStream => dataStream.json())
         .then(res => {
             if (res.status === 201) return window.location = '/signin';
+            // change this to back-end redirect unless sign up creates session
         })
         .catch(err => console.log(err));
     };
