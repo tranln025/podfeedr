@@ -1,10 +1,12 @@
-# podcast-app
+# Podfeedr
+We designed this app to store a list of all of your favorite podcasts in one place. You can search for podcasts by title or artist, view a list size of your choosing that matches your query, and “love” podcasts to add them to your personal private feed.  
+View app: https://podfeedr.herokuapp.com/
 
 ## Technologies Used
 iTunes external API  
 Bootstrap  
 Node.js (Express, Mongoose, body-parser, bcryptjs)  
-MongoDB
+MongoDB  
 Heroku
 
 ## Existing Features
@@ -15,7 +17,7 @@ Heroku
 - Store user's favorite podcasts
 - View total number of loves on a podcast
 - Scroll to top button
-- I'm Feeling Lucky button for a random list of podcasts
+- I'm Feeling Lucky button for a random list of podcasts (hover to see what it does)
 - Select number of search results
 
 
@@ -29,6 +31,12 @@ Heroku
 
 ---
 
-##### Screenshot(s) (optional)
+## Wireframes
+![wireframe](https://i.imgur.com/OlfNDIu.png)
+
+---
+
+## Screenshot(s)
+![home](https://i.imgur.com/L8axgZo.png)
 
 
